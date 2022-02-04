@@ -1,0 +1,18 @@
+<?php
+
+namespace App\Http\Controllers;
+
+use Illuminate\Http\Request;
+
+class PagesController extends Controller
+{
+    public function aPropos(){ return view('pages/apropos'); }
+
+
+Route::get('/apropos', 'PostsController@all');
+
+Route::get('/posts', [PostsController::class, 'all']);
+
+
+}
+
