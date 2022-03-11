@@ -4,8 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Leve;
 use App\ConteneurTri;
+use App\PointDeCollecte;
+use App\HistoriqueConteneurTri;
 
 use Illuminate\Http\Request;
+use \Illuminate\Http\Response;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
 
 class FrontController extends Controller
 {
@@ -15,50 +20,58 @@ class FrontController extends Controller
         return view('pages/accueil')->with('leves', $leves);
     }
 
-    /*public function accuei(){ 
-        $leves = Leve::all()->last();
-        
-        return view('pages/gestion')->with('leves', $leves);; 
-    }*/
+    
 
 
 
 
     /*Partie administration*/
-    public function adminpc(){ 
-        return view('pages/adminpc'); 
-    }
+    
 
     public function admincont(){ 
-        $conteneurs = ConteneurTri::all();
-        return view('pages/admincont')->with('conteneurs', $conteneurs); 
+        $conteneurs = ConteneurTri::all(); 
+      // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
+       //echo $conteneurs; 
+       $lien = PointDeCollecte::all();
+        $point_de_collectes = PointDeCollecte::all();
+        //return view('pages/adminCont')->with('conteneurs', $conteneurs);
+        return view('pages/adminCont', compact(['conteneurs', 'point_de_collectes','lien']));
+;      
     }
 
+    public function adminContEdit(){
+        return view('pages/adminContEdit');
+    }
+
+    public function adminContListe(){
+        return view('pages/adminContListe');
+    }
+
+
+    public function adminpc(){ 
+        $point_de_collectes = PointDeCollecte::all();
+        return view('pages/adminPc')->with('point_de_collectes', $point_de_collectes);
+    }
+
+    public function adminPcEdit(){
+        $conteneurs = ConteneurTri::all();
+        return view('pages/adminPcEdit')->with('conteneurs', $conteneurs);
+    }
+
+    public function adminPcListe(){
+        return view('pages/adminPcListe');
+    }
 
     /*Partie gestion*/
-    public function leve(){ 
-        return view('pages/leve'); 
+    public function gestionListe(){
+        return view('pages/gestionListe');
     }
 
-    public function rapport(){ 
-        return view('pages/rapport'); 
+    public function gestionRapport(){
+        return view('pages/gestionRapport');
     }
 
-    public function pointcollec(){ 
-        return view('pages/pointcollec'); 
+    public function gestionRapportEdit(){
+        return view('pages/gestionRapportEdit');
     }
-    
-
-    
-
-    
 }
-
-
-
-
-
-
-
-
-

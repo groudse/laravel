@@ -18,4 +18,5 @@ class ConteneurTri extends Model
     public function leves(){  
         return $this->hasOne(Leve::class,'conteneur_tri_id'); 
     }
+
 }
