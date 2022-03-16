@@ -33,7 +33,7 @@
 </thead>
 <tbody>
     @foreach ($conteneurs as $conteneur)
-    @foreach( $lien as $lie)
+    @foreach( $conteneur->$lien as $lie)
     <tr>
     <td>{!! $conteneur->id !!}</td>
         <td>{!! $conteneur->nom_conteneur !!}</td>
