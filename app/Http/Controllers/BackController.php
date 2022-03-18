@@ -19,7 +19,7 @@ class BackController extends Controller
 		$conteneur->longitude = $req->longitude;
 		$conteneur->hauteur = $req->hauteur;
 		$conteneur->adresse_modem = $req->adresse_modem;
-		$conteneur->point_de_collectes_id = $req->point_de_collectes;
+		//$conteneur->point_de_collectes_id = $req->point_de_collectes;
 		$conteneur->save();
 		return view('pages/adminContEdit');
 	}

@@ -23,7 +23,7 @@
 <input type="text" name="code_postal" placeholder="code postal" required><br>
 
 <select  name="conteneur_tris">
-   @foreach ($conteneurs as $conteneur)
+   @foreach ($conteneurs ?? '' as $conteneur)
     <option value="{!! $conteneur->nom_conteneur !!}">{!! $conteneur->nom_conteneur !!}</option>
     @endforeach
   </select><br>
