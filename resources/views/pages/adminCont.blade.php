@@ -33,7 +33,7 @@
 </thead>
 <tbody>
     @foreach ($conteneurs as $conteneur)
-    @foreach( $conteneur->$lien as $lie)
+    {{--@foreach( $conteneur->$lien as $lie)--}}
     <tr>
     <td>{!! $conteneur->id !!}</td>
         <td>{!! $conteneur->nom_conteneur !!}</td>
@@ -42,7 +42,7 @@
         <td>{!! $conteneur->longitude !!}</td>
         <td>{!! $conteneur->hauteur !!}</td>
          <td>{!! $conteneur->adresse_modem !!}</td>
-         <td>{!! $lie->nom_point_collecte !!}</td>
+        {{-- <td>{!! $lie->nom_point_collecte !!}</td>--}}
 
          {{--   @foreach ($conteneur->$point_de_collectes as $point_de_collecte)
         
@@ -55,7 +55,7 @@
         <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
         
     </tr>
-    @endforeach
+
     @endforeach
 </tbody>
 </table>
