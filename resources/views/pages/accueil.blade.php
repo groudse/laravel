@@ -35,7 +35,7 @@
 	<script type="text/javascript">
             // On initialise la latitude et la longitude de Paris (centre de la carte)
             var lat = 48.852969;
-            var lon = 2.349903;
+            var lon = -2.349903;
             var macarte = null;
             // Fonction d'initialisation de la carte
             function initMap() {
@@ -63,7 +63,7 @@ $leCode = Hash::make('secret');
 
 if (Hash::check('secret', $leCode))
 {
-    echo '<script>alert("Message")</script>';
+    <!-- echo '<script>alert("Message")</script>'; -->
 }
 
     </body>

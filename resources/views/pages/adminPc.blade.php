@@ -37,7 +37,7 @@
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
-        <td>{!! $pdc->code_postal !!}</td>
+        <td>{!! $pdc->id !!}</td>
     </tr>
     @endforeach
 

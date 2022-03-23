@@ -6,6 +6,7 @@ use App\Leve;
 use App\ConteneurTri;
 use App\PointDeCollecte;
 use App\HistoriqueConteneurTri;
+use App\ConteneurTriPointDeCollecte;
 
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
@@ -30,12 +31,14 @@ class FrontController extends Controller
 
     public function admincont(){ 
         $conteneurs = ConteneurTri::all(); 
+        $tous = ConteneurTriPointDeCollecte::all();
       // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
        //echo $conteneurs; 
-       $lien = PointDeCollecte::all();
-        $point_de_collectes = PointDeCollecte::all();
+       $po = PointDeCollecte::all();
+      // $point_de_collectes = PointDeCollecte::with('Conteneurs', 'point')->get();
+       // $point_de_collectes = PointDeCollecte::find(1);
         //return view('pages/adminCont')->with('conteneurs', $conteneurs);
-        return view('pages/adminCont', compact(['conteneurs', 'point_de_collectes','lien']));
+        return view('pages/adminCont', compact(['conteneurs','tous','po']));
 ;      
     }
 
@@ -64,7 +67,9 @@ class FrontController extends Controller
 
     /*Partie gestion*/
     public function gestionListe(){
-        return view('pages/gestionListe');
+        $conteneur = ConteneurTri::find($id);
+        $PointDeCollecte = $conteneur->PointDeCollectes();
+        return view('pages/gestionListe')->with('PointDeCollecte',$PointDeCollecte)->with('ConteneurTri',$conteneur);
     }
 
     public function gestionRapport(){

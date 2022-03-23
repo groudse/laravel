@@ -9,7 +9,7 @@
 <a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
 <a href="{{ route('gestion-liste_path') }}"><button type="button"> gestion liste</button></a></br>
 <a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
-<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
+<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br><br><br><br>
 
 
 <form action=" " method="POST">

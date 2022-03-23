@@ -18,7 +18,7 @@
 <table>
 <thead>
     <tr>
-        <th colspan="8">Conteneur 1</th>
+        <th colspan="9">Conteneur 1</th>
     </tr>
     <tr>
         <th>id</th>
@@ -29,19 +29,63 @@
         <th>Hauteur en cm</th>
         <th>Adresse modem</th>
         <th>Point de collecte</th>
+        <th>Delete</th>
     </tr>
 </thead>
 <tbody>
-    @foreach ($conteneurs as $conteneur)
-    {{--@foreach( $conteneur->$lien as $lie)--}}
+    
+   @foreach ($conteneurs as $conteneur){
+    
+  
     <tr>
     <td>{!! $conteneur->id !!}</td>
-        <td>{!! $conteneur->nom_conteneur !!}</td>
-        <td>{!! $conteneur->type_tri !!}</td>
-        <td>{!! $conteneur->latitude !!}</td>
-        <td>{!! $conteneur->longitude !!}</td>
-        <td>{!! $conteneur->hauteur !!}</td>
-         <td>{!! $conteneur->adresse_modem !!}</td>
+    <td>{!! $conteneur->nom_conteneur !!}</td>
+    <td>{!! $conteneur->type_tri !!}</td>
+    <td>{!! $conteneur->latitude  !!}</td>
+    <td>{!! $conteneur->longitude  !!}</td>
+    <td>{!! $conteneur->hauteur  !!}</td>
+    <td>{!! $conteneur->adresse_modem  !!}</td>
+    <td><?php 
+        foreach($tous as $lo){
+            foreach($po as $pdc){
+            if($conteneur->id == $lo->conteneur_tri_id and $pdc->id == $lo->point_de_collecte_id){
+                echo $pdc->nom_point_collecte;
+            }
+        }
+        }
+        ?></td>
+       
+      
+     {{-- <td>
+        <?php 
+        foreach($conteneurs as $cont){
+            if($cont->id == $conteneur->conteneur_tri_id){
+                echo $cont->nom_conteneur;
+            }
+        }
+        ?>
+        </td>
+
+        <td>
+        <?php 
+        foreach($po as $pdc){
+            if($pdc->id == $conteneur->point_de_collecte_id){
+                echo $pdc->nom_point_collecte;
+            }
+        }
+        ?>
+        </td>--}}
+        
+      
+      
+
+
+
+
+
+
+
+
         {{-- <td>{!! $lie->nom_point_collecte !!}</td>--}}
 
          {{--   @foreach ($conteneur->$point_de_collectes as $point_de_collecte)
@@ -49,13 +93,21 @@
         <select  name="point_de_collectes">
             <option value="d">{!! $point_de_collecte_->nom_point_collecte !!}</option>
         </select><br>
+        
         @endforeach --}}
      
        
         <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
         
     </tr>
+          
+            @endforeach
 
-    @endforeach
+
+
+
+
+
+
 </tbody>
 </table>
