@@ -29,14 +29,14 @@
         <th>Hauteur en cm</th>
         <th>Adresse modem</th>
         <th>Point de collecte</th>
-        <th>Delete</th>
+        <th>Supprimer</th>
     </tr>
 </thead>
 <tbody>
     
-   @foreach ($conteneurs as $conteneur){
+   @foreach ($conteneurs as $conteneur)
     
-  
+   @foreach ($conteneur->pointdecollectes as $pdc)
     <tr>
     <td>{!! $conteneur->id !!}</td>
     <td>{!! $conteneur->nom_conteneur !!}</td>
@@ -45,7 +45,20 @@
     <td>{!! $conteneur->longitude  !!}</td>
     <td>{!! $conteneur->hauteur  !!}</td>
     <td>{!! $conteneur->adresse_modem  !!}</td>
-    <td><?php 
+   
+        
+            
+    <td>{{ $pdc->nom_point_collecte }}</td>
+       
+ 
+    
+
+
+
+
+
+
+    {{--<td><?php 
         foreach($tous as $lo){
             foreach($po as $pdc){
             if($conteneur->id == $lo->conteneur_tri_id and $pdc->id == $lo->point_de_collecte_id){
@@ -56,7 +69,7 @@
         ?></td>
        
       
-     {{-- <td>
+      <td>
         <?php 
         foreach($conteneurs as $cont){
             if($cont->id == $conteneur->conteneur_tri_id){
@@ -101,6 +114,7 @@
         
     </tr>
           
+            @endforeach
             @endforeach
 
 

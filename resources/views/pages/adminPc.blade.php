@@ -18,15 +18,16 @@
 <table>
 <thead>
     <tr>
-        <th colspan="8">Point de collecte 1</th>
+        <th colspan="6">Point de collecte 1</th>
     </tr>
     <tr>
-        <th>nom_point_collecte</th>
-        <th>adresse</th>
+        <th>Nom</th>
+        <th>Adresse</th>
         <th>ville</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Code postal</th>
+        <th>Supprimer</th>
     </tr>
 </thead>
 <tbody>
@@ -38,6 +39,10 @@
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
         <td>{!! $pdc->id !!}</td>
+        <td><a href="{!! route('DeleteControllerDeletePointDeCollecte_path', 
+            ['id' => $pdc->id]) !!}"><button type="button"> 
+                Supprimer</button></a>
+        </td> 
     </tr>
     @endforeach
 

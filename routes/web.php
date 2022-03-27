@@ -19,9 +19,7 @@ Route::get('/', function () {
 });
 
 
-Route::group(['prefix' => 'admin'], function () {
-    Voyager::routes();
-});
+
 
 Route::get ('/accueil', [
     'as' => 'accueil_path',
@@ -99,3 +97,8 @@ Route::post('/admin_index/adminpc/edit', [
     'as' => 'BackControllerSavePc_path',
     'uses' => 'App\Http\Controllers\BackController@save_pc',
 ]);
+
+
+Route::group(['prefix' => 'admin'], function () {
+    Voyager::routes();
+});

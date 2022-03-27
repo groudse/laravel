@@ -22,22 +22,17 @@
 <input type="number" step="0.01" name="longitude" placeholder="longitude" required><br>
 <input type="text" name="code_postal" placeholder="code postal" required><br>
 
+<a href="{{ route('BackControllerSavePc_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>
+</form>
+
+
+
+
+
+
 <select  name="conteneur_tris">
    @foreach ($conteneurs ?? '' as $conteneur)
     <option value="{!! $conteneur->nom_conteneur !!}">{!! $conteneur->nom_conteneur !!}</option>
     @endforeach
   </select><br>
   
-
-
-
-
-
-
-
-
-
-
-
-<a href="{{ route('BackControllerSavePc_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>
-</form>

@@ -24,6 +24,8 @@ class BackController extends Controller
 		return view('pages/adminContEdit');
 	}
 
+
+	
 	function save_pc(Request $req)
 	{
 		
