@@ -30,15 +30,16 @@ class FrontController extends Controller
     
 
     public function admincont(){ 
-        $conteneurs = ConteneurTri::all(); 
-        $tous = ConteneurTriPointDeCollecte::all();
+        $conteneurs = ConteneurTri::with('pointdecollectes')->get(); 
+       //$conteneurs = ConteneurTri::all(); 
+        //$tous = ConteneurTriPointDeCollecte::all();
       // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
        //echo $conteneurs; 
-       $po = PointDeCollecte::all();
+       //$po = PointDeCollecte::all();
       // $point_de_collectes = PointDeCollecte::with('Conteneurs', 'point')->get();
        // $point_de_collectes = PointDeCollecte::find(1);
         //return view('pages/adminCont')->with('conteneurs', $conteneurs);
-        return view('pages/adminCont', compact(['conteneurs','tous','po']));
+        return view('pages/adminCont', compact(['conteneurs']));
 ;      
     }
 
