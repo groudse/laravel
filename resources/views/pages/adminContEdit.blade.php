@@ -31,6 +31,7 @@
 <input type="number" step="0.01" name="longitude" placeholder="longitude" required><br>
 <input type="number" name="hauteur" placeholder="hauteur" required><br>
 <input type="text" name="adresse_modem" placeholder="adresse du modem" required><br>
+<input type="text" name="point_de_collecte_id" placeholder="p du modem" required><br>
 
 {{--{{ Form::open(array('url' => 'foo/bar')) }}
 @csrf
@@ -41,7 +42,7 @@
     {!! Form::close() !!}
 -->--}}
 
-<input type="text" name="point_de_collectes" placeholder="p du modem" required><br>
+
 
 
 <a href="{{ route('BackControllerSaveCont_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>

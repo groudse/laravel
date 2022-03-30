@@ -90,6 +90,8 @@ Route::get ('/admin_index/admincont/index', [
     'uses' => 'App\Http\Controllers\ConteneurDeleteController@index',
     ]);
 
+  
+
 Route::post('/admin_index/admincont/edit', [
     'as' => 'BackControllerSaveCont_path',
     'uses' => 'App\Http\Controllers\BackController@save_cont',

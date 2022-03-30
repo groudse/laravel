@@ -15,6 +15,23 @@
 <a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
 
 
+
+<select  id="foo"'>
+    <?php foreach($conteneurs as $conteneur){?>
+<?php foreach($conteneur->pointdecollectes as $pdc) {?>
+    <option value="<?php $test=$pdc['nom_point_collecte']?>" ><?php echo $pdc['nom_point_collecte'];;?></option>
+    <?php }}?>
+</option> 
+    
+   
+  </select>
+  
+ 
+<?php echo $test;?>
+
+
+
+
 <table>
 <thead>
     <tr>
@@ -33,36 +50,31 @@
 </thead>
 <tbody>
 
-
-
-@foreach ($conteneurs as $conteneur)
+<?php foreach ($conteneurs as $conteneur){
     
-    @foreach ($conteneur->pointdecollectes as $pdc)
+foreach($conteneur->pointdecollectes as $pdc){ 
+?>
+
+<div id="here">
+
+
+}); ?>
+<?php if($test == $pdc->nom_point_collecte){?>
      <tr>
+
      <td>{!! $conteneur->id !!}</td>
      <td>{!! $conteneur->nom_conteneur !!}</td>
      <td>{!! $conteneur->type_tri !!}</td>
      <td>{!! $conteneur->latitude  !!}</td>
      <td>{!! $conteneur->longitude  !!}</td>
      <td>{!! $conteneur->hauteur  !!}</td>
-     <td>{!! $conteneur->adresse_modem  !!}</td>
+     <td>{!! $conteneur->adresse_modem  !!}</td>     
+     <td>{!! $pdc->nom_point_collecte !!}</td>
+     <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
     
-         
-             
-     <td>{{ $pdc->nom_point_collecte }}</td>
-
-         {{--   @foreach ($conteneur->$point_de_collectes as $point_de_collecte)
-        
-        <select  name="point_de_collectes">
-            <option value="d">{!! $point_de_collecte_->nom_point_collecte !!}</option>
-        </select><br>
-        @endforeach --}}
-     
-       
-        <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
-        
     </tr>
-    @endforeach
-    @endforeach
+</div>
+    <?php }}}?>
+
 </tbody>
 </table>

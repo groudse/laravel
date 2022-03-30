@@ -32,7 +32,7 @@ class FrontController extends Controller
     public function admincont(){ 
         $conteneurs = ConteneurTri::with('pointdecollectes')->get(); 
        //$conteneurs = ConteneurTri::all(); 
-        //$tous = ConteneurTriPointDeCollecte::all();
+       // $tous = ConteneurTriPointDeCollecte::with('pointdecollectes')->get();
       // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
        //echo $conteneurs; 
        //$po = PointDeCollecte::all();
