@@ -1,9 +1,14 @@
-<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
-
-<h1>PAGE LISTE</h1>
-@auth  <p>The user is authenticated... </p>    @endauth
-@guest <p>The user is not authenticated...</p> @endguest
-<a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Livewire : Sélection Pays et Ville</title>
+        <!-- Styles livewire -->
+        @livewireStyles()
+    </head>
+    <body>
+    <a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
 <a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
 <a href="{{ route('adminpc-edit_path') }}"><button type="button"> admin pc edit</button></a></br>
 <a href="{{ route('adminpc-liste_path') }}"><button type="button"> admin pc liste</button></a></br>
@@ -13,6 +18,39 @@
 <a href="{{ route('gestion-liste_path') }}"><button type="button"> gestion liste</button></a></br>
 <a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
 <a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
+       
+
+
+
+
+
+
+<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
+
+<h1>PAGE LISTE</h1>
+@auth  <p>The user is authenticated... </p>    @endauth
+@guest <p>The user is not authenticated...</p> @endguest
+ <!-- Le composant app/Http/Livewire/CountriesCitiesSelect.php -->
+ @livewire("conteneur-select")
+
+<!-- Scripts livewire -->
+@livewireScripts()
+{{--<select class="form-control" name="product_id">
+
+    <option>Select Item</option>
+
+    @foreach ($items as $key => $value)
+
+        <option value="{{ $key }}" {{ ( $key == 1) ? 'selected' : '' }}> 
+
+            {{ $value }} 
+
+        </option>
+        <?php echo $value ?>
+    @endforeach
+
+</select>--}}
+
 
 
 <table>
@@ -51,63 +89,6 @@
     <td>{{ $pdc->nom_point_collecte }}</td>
        
  
-    
-
-
-
-
-
-
-    {{--<td><?php 
-        foreach($tous as $lo){
-            foreach($po as $pdc){
-            if($conteneur->id == $lo->conteneur_tri_id and $pdc->id == $lo->point_de_collecte_id){
-                echo $pdc->nom_point_collecte;
-            }
-        }
-        }
-        ?></td>
-       
-      
-      <td>
-        <?php 
-        foreach($conteneurs as $cont){
-            if($cont->id == $conteneur->conteneur_tri_id){
-                echo $cont->nom_conteneur;
-            }
-        }
-        ?>
-        </td>
-
-        <td>
-        <?php 
-        foreach($po as $pdc){
-            if($pdc->id == $conteneur->point_de_collecte_id){
-                echo $pdc->nom_point_collecte;
-            }
-        }
-        ?>
-        </td>--}}
-        
-      
-      
-
-
-
-
-
-
-
-
-        {{-- <td>{!! $lie->nom_point_collecte !!}</td>--}}
-
-         {{--   @foreach ($conteneur->$point_de_collectes as $point_de_collecte)
-        
-        <select  name="point_de_collectes">
-            <option value="d">{!! $point_de_collecte_->nom_point_collecte !!}</option>
-        </select><br>
-        
-        @endforeach --}}
      
        
         <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
@@ -125,3 +106,14 @@
 
 </tbody>
 </table>
+
+
+
+
+
+    </body>
+</html>
+
+
+
+

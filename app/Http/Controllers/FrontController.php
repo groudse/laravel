@@ -30,16 +30,13 @@ class FrontController extends Controller
     
 
     public function admincont(){ 
-         $conteneurs = ConteneurTri::with('pointdecollectes')->get(); 
-        // $tous = ConteneurTriPointDeCollecte::all();
-      // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
-       //echo $conteneurs; 
-    //    $po = PointDeCollecte::all();
-      // $point_de_collectes = PointDeCollecte::with('Conteneurs', 'point')->get();
-       // $point_de_collectes = PointDeCollecte::find(1);
-        //return view('pages/adminCont')->with('conteneurs', $conteneurs);
-        return view('pages/adminCont', compact(['conteneurs']));
-;      
+        $items = PointDeCollecte::pluck('nom_point_collecte', 'id');
+    
+
+
+        $conteneurs = ConteneurTri::all(); 
+    
+        return view('pages/adminCont', compact(['conteneurs','idt', 'items']));
     }
 
     public function adminContEdit(){
@@ -52,8 +49,8 @@ class FrontController extends Controller
 
 
     public function adminpc(){ 
-        $point_de_collectes = PointDeCollecte::all();
-        return view('pages/adminPc')->with('point_de_collectes', $point_de_collectes);
+        $pdc = PointDeCollecte::all();
+        return view('pages/adminPc')->with('point_de_collectes',$pdc);
     }
 
     public function adminPcEdit(){
@@ -62,7 +59,8 @@ class FrontController extends Controller
     }
 
     public function adminPcListe(){
-        return view('pages/adminPcListe');
+        $pdc = PointDeCollecte::all();
+        return view('pages/adminPcListe')->with('point_de_collectes',$pdc);
     }
 
     /*Partie gestion*/

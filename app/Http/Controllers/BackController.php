@@ -15,11 +15,8 @@ class BackController extends Controller
 		$conteneur = new ConteneurTri();
 		$conteneur->nom_conteneur = $req->nom_conteneur;
 		$conteneur->type_tri = $req->type_tri;
-		$conteneur->latitude = $req->latitude;
-		$conteneur->longitude = $req->longitude;
 		$conteneur->hauteur = $req->hauteur;
 		$conteneur->adresse_modem = $req->adresse_modem;
-		//$conteneur->point_de_collectes_id = $req->point_de_collectes;
 		$conteneur->save();
 		return view('pages/adminContEdit');
 	}

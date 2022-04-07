@@ -12,3 +12,10 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+.env
+.acdc.sql
+.composer.json
+.composer.lock
+/storage
+/database
+/config

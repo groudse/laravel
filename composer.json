@@ -1,4 +1,7 @@
 {
+    
+
+
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
@@ -11,6 +14,7 @@
         "laravel/framework": "^8.75",
         "laravel/sanctum": "^2.11",
         "laravel/tinker": "^2.5",
+        "livewire/livewire": "^2.10",
         "tcg/voyager": "^1.5"
     },
     "require-dev": {
@@ -59,5 +63,12 @@
         "sort-packages": true
     },
     "minimum-stability": "dev",
-    "prefer-stable": true
+    "prefer-stable": true,
+
+    "repositories": {
+        "hooks": {
+            "type": "composer",
+            "url": "https://larapack.io"
+        }
+    }
 }

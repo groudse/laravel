@@ -19,7 +19,7 @@ class PointDeCollecte extends Model
         return $this->hasMany(Leve::class,'point_de_collecte_id'); 
     }
 
-    public function PointDeCollectes(){  
+    public function ConteneurTris(){  
         return $this->belongsToMany('App\ConteneurTri', 'conteneur_tri_point_de_collectes'); 
     }
 }
