@@ -1,5 +1,13 @@
-<h1>Admin pc</h1>
-<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
 
 <a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
 <a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
@@ -13,22 +21,25 @@
 <a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
 
 
-
+<h1>Admin pc</h1>
+<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
 
 <table>
 <thead>
     <tr>
-        <th colspan="8">Point de collecte 1</th>
+        <th colspan="6">Lorem ipsum</th>
     </tr>
     <tr>
-        <th>nom_point_collecte</th>
-        <th>adresse</th>
+        <th>Nom</th>
+        <th>Adresse</th>
         <th>ville</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Code postal</th>
+        <th>Supprimer</th>
     </tr>
 </thead>
+
 <tbody>
 @foreach ($point_de_collectes as $pdc)
     <tr>
@@ -37,9 +48,17 @@
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
-        <td>{!! $pdc->id !!}</td>
+        <td>{!! $pdc->code_postal !!}</td>
+        <td><a  href="{!! route('DeletePointDeCollecte_path', 
+            ['id' => $pdc->id]) !!}"><button type="button"> 
+                Supprimer</button></a>
+        </td> 
     </tr>
     @endforeach
 
     </tbody>
 </table> 
+</body>
+</html>
+
+

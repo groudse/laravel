@@ -1,4 +1,12 @@
-<h1>Admin pc edit</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
 
 <a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
 <a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
@@ -9,7 +17,12 @@
 <a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
 <a href="{{ route('gestion-liste_path') }}"><button type="button"> gestion liste</button></a></br>
 <a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
-<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br><br><br><br>
+<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
+
+
+<h1>Admin pc edit</h1>
+
+
 
 
 <form action=" " method="POST">
@@ -18,26 +31,14 @@
 <input type="text" name="adresse" placeholder="adresse du point de collecte" required><br>
 <input type="text" name="ville" placeholder="ville" required><br>
 
-<input type="number" step="0.01" name="latitude" placeholder="latitude" required><br>
-<input type="number" step="0.01" name="longitude" placeholder="longitude" required><br>
+<input type="float"  name="latitude" placeholder="latitude" required><br>
+<input type="float"  name="longitude" placeholder="longitude" required><br>
 <input type="text" name="code_postal" placeholder="code postal" required><br>
-
-<select  name="conteneur_tris">
-   @foreach ($conteneurs ?? '' as $conteneur)
-    <option value="{!! $conteneur->nom_conteneur !!}">{!! $conteneur->nom_conteneur !!}</option>
-    @endforeach
-  </select><br>
-  
-
-
-
-
-
-
-
-
-
-
 
 <a href="{{ route('BackControllerSavePc_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>
 </form>
+    
+</body>
+</html>
+
+

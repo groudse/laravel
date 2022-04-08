@@ -18,10 +18,11 @@ Route::get('/', function () {
     return view('pages/accueil');
 });
 
-
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+
 
 Route::get ('/accueil', [
     'as' => 'accueil_path',
@@ -74,21 +75,17 @@ Route::get ('/gestion_index/rapport/edit', [
     'uses' => 'App\Http\Controllers\FrontController@gestionRapportEdit',
     ]);
     
-//partie pour le add
-
-//Route::post('/admin_index/admincont/edit','App\Http\Controllers\BackController@save');
-
-//partie pour le delete
+Route::get ('/admin_index/adminpc/delete/{id}', [
+    'as' => 'DeletePointDeCollecte_path',
+    'uses' => 'App\Http\Controllers\ConteneurDeleteController@DeletePointDeCollecte',
+    ]);
 
 Route::get ('/admin_index/admincont/delete/{id}', [
     'as' => 'DeleteControllerDeleteConteneur_path',
     'uses' => 'App\Http\Controllers\ConteneurDeleteController@deleteConteneur',
     ]);
 
-Route::get ('/admin_index/admincont/index', [
-    'as' => 'DeleteControllerIndex_path',
-    'uses' => 'App\Http\Controllers\ConteneurDeleteController@index',
-    ]);
+
 
   
 
@@ -101,3 +98,5 @@ Route::post('/admin_index/adminpc/edit', [
     'as' => 'BackControllerSavePc_path',
     'uses' => 'App\Http\Controllers\BackController@save_pc',
 ]);
+
+

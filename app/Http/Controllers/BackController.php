@@ -17,14 +17,14 @@ class BackController extends Controller
 		
 		$conteneur->nom_conteneur = $req->nom_conteneur;
 		$conteneur->type_tri = $req->type_tri;
-		$conteneur->latitude = $req->latitude;
-		$conteneur->longitude = $req->longitude;
 		$conteneur->hauteur = $req->hauteur;
 		$conteneur->adresse_modem = $req->adresse_modem;
 		$conteneur->save();
 		return view('pages/adminContEdit');
 	}
 
+
+	
 	function save_pc(Request $req)
 	{
 		

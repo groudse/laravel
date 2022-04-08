@@ -57,14 +57,8 @@
             };
         </script>
 
-use Illuminate\Support\Facades\Hash;
 
-$leCode = Hash::make('secret');
 
-if (Hash::check('secret', $leCode))
-{
-    <!-- echo '<script>alert("Message")</script>'; -->
-}
 
     </body>
 </html>
