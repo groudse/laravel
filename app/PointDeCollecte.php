@@ -22,4 +22,6 @@ class PointDeCollecte extends Model
     public function ConteneurTris(){  
         return $this->belongsToMany('App\ConteneurTri', 'conteneur_tri_point_de_collectes'); 
     }
+
+
 }

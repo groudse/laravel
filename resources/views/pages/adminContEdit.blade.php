@@ -35,7 +35,16 @@
 <a href="{{ route('BackControllerSaveCont_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>
 
 
+
 </form>
+
+<form action=" " method="GET">
+@csrf
+<input type="number" name="code">
+<a href="{{ route('code_path') }}"><button type="post">SEND</button></a>
+
+</form>
+
 
 </body>
 </html>

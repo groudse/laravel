@@ -15,15 +15,16 @@
             @foreach ($countries as $country)
             <option value="{{ $country->id }}" >{{ $country->nom_point_collecte }}</option>
             
+            
             @endforeach
             
         </select>
     </p>
 
     <!-- On vérifie si la collection de villes contient des éléments -->
-    
+    @if($conts->count())
     <p>
-    <h1>{{!! $country->id; !!}}</h1>
+    
         <label for="cont_id" >Sélectionnez une ville</label>
 
         <!-- Data Binding : <select> avec la propriété $city_id -->
@@ -41,5 +42,5 @@
 
         </select>
     </p>
-   
+   @endif
 </div>

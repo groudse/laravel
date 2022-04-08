@@ -23,6 +23,11 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
+Route::get ('/contbypdc/{id}', [
+    'as' => 'ContByPDC_path',
+    'uses' => 'App\Http\Controllers\FrontController@ContByPDC',
+    ]);
+
 
 Route::get ('/accueil', [
     'as' => 'accueil_path',
@@ -86,7 +91,10 @@ Route::get ('/admin_index/admincont/delete/{id}', [
     ]);
 
 
-
+/*Route::get('/admin_index/admincont/edit/{code}',[
+    'as' => 'code_path',
+    'uses' => 'App\Http\Controllers\BackController@secureCode',
+]);*/
   
 
 Route::post('/admin_index/admincont/edit', [

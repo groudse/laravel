@@ -18,7 +18,8 @@ class FrontController extends Controller
     /*Accueil*/
     public function accueil(){ 
         $leves = Leve::all()->last();
-        return view('pages/accueil')->with('leves', $leves);
+        $pdc = PointDeCollecte::all();
+        return view('pages/accueil', compact(['pdc']));
     }
 
     
@@ -32,18 +33,25 @@ class FrontController extends Controller
     public function admincont(){ 
         $items = PointDeCollecte::pluck('nom_point_collecte', 'id');
     
-
+        
 
         $conteneurs = ConteneurTri::all(); 
     
-        return view('pages/adminCont', compact(['conteneurs','idt', 'items']));
+        return view('pages/adminCont', compact(['conteneurs', 'items']));
     }
 
     public function adminContEdit(){
         return view('pages/adminContEdit');
     }
 
+    public function ContByPDC($id){
+        $var = PointDeCollecte::find($id)->ConteneurTris()->get();
+        dump ($var);
+        return view('pages/cont');
+    }
+
     public function adminContListe(){
+        
         return view('pages/adminContListe');
     }
 
@@ -65,9 +73,9 @@ class FrontController extends Controller
 
     /*Partie gestion*/
     public function gestionListe(){
-        $conteneur = ConteneurTri::find($id);
-        $PointDeCollecte = $conteneur->PointDeCollectes();
-        return view('pages/gestionListe')->with('PointDeCollecte',$PointDeCollecte)->with('ConteneurTri',$conteneur);
+        //$conteneur = ConteneurTri::find($id);
+        //$PointDeCollecte = $conteneur->PointDeCollectes();
+        //return view('pages/gestionListe')->with('PointDeCollecte',$PointDeCollecte)->with('ConteneurTri',$conteneur);
     }
 
     public function gestionRapport(){

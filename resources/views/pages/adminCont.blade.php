@@ -119,11 +119,6 @@
 
 
 
-<?php foreach ($conteneurs as $conteneur){
-    
-foreach($conteneur->pointdecollectes as $pdc){ 
-?>
-
 <div id="here">
 
 </tbody>
