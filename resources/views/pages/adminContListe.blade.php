@@ -23,11 +23,118 @@
 <a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
 
 
-       <!-- Le composant app/Http/Livewire/CountriesCitiesSelect.php -->
-       @livewire("conteneur-select")
 
-<!-- Scripts livewire -->
-@livewireScripts()
+
+
+
+
+
+
+<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
+
+<table>
+    <thead>
+    <tr>
+        <th colspan="7">Lorem ipsum</th>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Adresse</th>
+        <th>ville</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Code postal</th>
+        
+    </tr>
+
+    </thead>
+
+
+    <tbody>
+   
+ 
+    <tr>
+    
+<?php $first = true;
+foreach ( $pdcUnique as $pdc )
+{
+    if ( $first )
+    { ?>
+      <td>{{ $pdcUnique->nom_point_collecte }}</td>
+    <td>{{ $pdc->adresse }}
+    <td>{{ $pdc->ville }}</td>
+    <td>{{ $pdc->latitude }}</td>
+    <td>{{ $pdc->longitude }}</td>
+    <td>{{ $pdc->code_postal }}</td><?php
+        $first = false;
+    }
+  
+} ?>
+
+
+
+   
+
+
+                </tr>
+
+
+    </tbody>
+
+
+   
+</table>
+
+
+
+
+
+
+<table>
+<thead>
+    <tr>
+        <th colspan="7">Lorem ipsum</th>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Type de tri</th>
+        <th>Remplissage</th>
+        <th>Batterie</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th>Supprimer</th>
+        
+    </tr>
+</thead>
+
+<tbody>
+@foreach($contByPdc as $cont)
+@foreach($cont->historiqueconteneurtris as $history)
+    <tr>
+    <td>{{ $pdcUnique->nom_point_collecte }}</td>
+    <td>{!! $cont->nom_conteneur !!}</td>
+        <td>{!! $cont->type_tri !!}</td>
+        <td>{!! $history->remplissage !!}</td>
+        <td>{!! $history->batterie !!}</td>
+        <td>{!! $cont->latitude !!}</td>
+        <td>{!! $cont->longitude !!}</td>
+        
+        <td><a  href="{!! route('DeleteConteneur_path', 
+            ['id' => $cont->id]) !!}"><button type="button"> 
+                Supprimer</button></a>
+        </td> 
+    
+
+                </tr>
+    @endforeach
+    @endforeach
+
+    </tbody>
+</table> 
+
+<a href="{{ route('adminpc_path') }}"><button>Retourner sur la liste des points de collectes</button></a>
+
+
 </body>
 </html>
 

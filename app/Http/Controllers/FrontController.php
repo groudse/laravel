@@ -17,9 +17,9 @@ class FrontController extends Controller
 {
     /*Accueil*/
     public function accueil(){ 
-        $leves = Leve::all()->last();
-        $pdc = PointDeCollecte::all();
-        return view('pages/accueil', compact(['pdc']));
+        $ledves = Leve::all()->last();
+        $leves = PointDeCollecte::all();
+        return view('pages/accueil', compact(['leves']));
     }
 
     
@@ -41,20 +41,20 @@ class FrontController extends Controller
     }
 
     public function adminContEdit(){
+
         return view('pages/adminContEdit');
     }
 
-    public function ContByPDC($id){
-        $var = PointDeCollecte::find($id)->ConteneurTris()->get();
-        dump ($var);
-        return view('pages/cont');
-    }
-
-    public function adminContListe(){
+    public function adminContListe($id){
+       
+         $contByPdc = PointDeCollecte::find($id)->ConteneurTris()->get();
         
-        return view('pages/adminContListe');
+         $pdcUnique = PointDeCollecte::find($id)->get();
+  
+        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
     }
 
+  
 
     public function adminpc(){ 
         $pdc = PointDeCollecte::all();

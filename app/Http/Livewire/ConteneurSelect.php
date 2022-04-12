@@ -19,7 +19,7 @@ class ConteneurSelect extends Component
 
     // Quand $country_id change, on charge les $cities de $country_id 
     public function updatePdcId ($newValue) {
-        $this->conts = ConteneurTri::where("pointdecollectes", $newValue)->orderBy("point_de_collecte_id")->get();
+        $this->conts = ConteneurTri::where("point_de_collectes", $newValue)->orderBy("conteneur_tri_point_de_collectes")->get();
         //PointDeCollecte::with('pointdecollectes')->get();
         //
     }

@@ -23,10 +23,6 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 
-Route::get ('/contbypdc/{id}', [
-    'as' => 'ContByPDC_path',
-    'uses' => 'App\Http\Controllers\FrontController@ContByPDC',
-    ]);
 
 
 Route::get ('/accueil', [
@@ -59,7 +55,12 @@ Route::get ('/admin_index/admincont/edit', [
     'uses' => 'App\Http\Controllers\FrontController@adminContEdit',
     ]);
 
-Route::get ('/admin_index/admincont/liste', [
+    Route::get ('/admin_index/admincont/liste/{id}', [
+        'as' => 'ContByPDC_path',
+        'uses' => 'App\Http\Controllers\FrontController@adminContListe',
+        ]);
+
+Route::get ('/admin_index/admincont/liste/', [
     'as' => 'admincont-liste_path',
     'uses' => 'App\Http\Controllers\FrontController@adminContListe',
     ]);
@@ -86,7 +87,7 @@ Route::get ('/admin_index/adminpc/delete/{id}', [
     ]);
 
 Route::get ('/admin_index/admincont/delete/{id}', [
-    'as' => 'DeleteControllerDeleteConteneur_path',
+    'as' => 'DeleteConteneur_path',
     'uses' => 'App\Http\Controllers\ConteneurDeleteController@deleteConteneur',
     ]);
 

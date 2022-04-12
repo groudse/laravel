@@ -27,7 +27,7 @@
 <table>
 <thead>
     <tr>
-        <th colspan="6">Lorem ipsum</th>
+        <th colspan="8">Lorem ipsum</th>
     </tr>
     <tr>
         <th>Nom</th>
@@ -36,7 +36,9 @@
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Code postal</th>
+        <th>Conteneur</th>
         <th>Supprimer</th>
+        
     </tr>
 </thead>
 
@@ -44,16 +46,22 @@
 @foreach ($point_de_collectes as $pdc)
     <tr>
     <td>{!! $pdc->nom_point_collecte !!}</td>
-        <td>{!! $pdc->adresse !!}</td>
+        <td>{!! $pdc->id !!}</td>
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
         <td>{!! $pdc->code_postal !!}</td>
+
+        <td><a href="{!! route('ContByPDC_path', 
+            ['id' =>  $pdc->id ]) !!}"><button type="button"> 
+                Lien</button></a></td>
+               
         <td><a  href="{!! route('DeletePointDeCollecte_path', 
             ['id' => $pdc->id]) !!}"><button type="button"> 
                 Supprimer</button></a>
         </td> 
-    </tr>
+        </tr>
+   
     @endforeach
 
     </tbody>

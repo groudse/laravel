@@ -30,26 +30,7 @@
 <h1>PAGE LISTE</h1>
 @auth  <p>The user is authenticated... </p>    @endauth
 @guest <p>The user is not authenticated...</p> @endguest
- <!-- Le composant app/Http/Livewire/CountriesCitiesSelect.php -->
- @livewire("conteneur-select")
 
-<!-- Scripts livewire -->
-@livewireScripts()
-{{--<select class="form-control" name="product_id">
-
-    <option>Select Item</option>
-
-    @foreach ($items as $key => $value)
-
-        <option value="{{ $key }}" {{ ( $key == 1) ? 'selected' : '' }}> 
-
-            {{ $value }} 
-
-        </option>
-        <?php echo $value ?>
-    @endforeach
-
-</select>--}}
 
 
 
@@ -108,7 +89,7 @@
  
      
        
-        <td><a href="{!! route('DeleteControllerDeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
+        <td><a href="{!! route('DeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
         
     </tr>
           
