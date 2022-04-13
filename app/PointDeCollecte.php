@@ -23,5 +23,7 @@ class PointDeCollecte extends Model
         return $this->belongsToMany('App\ConteneurTri', 'conteneur_tri_point_de_collectes'); 
     }
 
-
+    public function test(){
+        return $this->hasMany(ConteneurTriPointDeCollecte::class, 'point_de_collecte_id');
+    }
 }

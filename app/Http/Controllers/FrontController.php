@@ -36,6 +36,7 @@ class FrontController extends Controller
         
 
         $conteneurs = ConteneurTri::all(); 
+        dump ($conteneurs);
     
         return view('pages/adminCont', compact(['conteneurs', 'items']));
     }
@@ -49,7 +50,8 @@ class FrontController extends Controller
        
          $contByPdc = PointDeCollecte::find($id)->ConteneurTris()->get();
         
-         $pdcUnique = PointDeCollecte::find($id)->get();
+         $pdcUnique = PointDeCollecte::where('id', $id)->take(1)->get();
+         
   
         return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
     }

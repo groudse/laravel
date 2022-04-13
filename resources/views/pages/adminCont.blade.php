@@ -35,22 +35,6 @@
 
 
 
-<select  id="foo"'>
-    <?php foreach($conteneurs as $conteneur){?>
-<?php foreach($conteneur->pointdecollectes as $pdc) {?>
-    <option value="<?php $test=$pdc['nom_point_collecte']?>" ><?php echo $pdc['nom_point_collecte'];;?></option>
-    <?php }}?>
-</option> 
-    
-   
-  </select>
-  
- 
-<?php echo $test;?>
-
-
-
-
 <table>
 <thead>
     <tr>
@@ -72,7 +56,7 @@
     
    @foreach ($conteneurs as $conteneur)
     
-   @foreach ($conteneur->pointdecollectes as $pdc)
+  
     <tr>
     <td>{!! $conteneur->id !!}</td>
     <td>{!! $conteneur->nom_conteneur !!}</td>
@@ -83,8 +67,15 @@
     <td>{!! $conteneur->adresse_modem  !!}</td>
    
         
-            
-    <td>{{ $pdc->nom_point_collecte }}</td>
+@foreach ($conteneur->pointdecollectes as $pdc)  
+@if($pdc->nom_point_collecte == NULL))
+    {
+             <td>{{ $pdc->nom_point_collecte }}</td>
+    }
+    @else{
+            <td>Non lié</td>
+        }
+   @endif
        
  
      

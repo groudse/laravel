@@ -52,31 +52,27 @@
 
     <tbody>
    
- 
+@foreach ( $pdcUnique ?? '' as $pdc )
     <tr>
-    
-<?php $first = true;
-foreach ( $pdcUnique as $pdc )
-{
-    if ( $first )
-    { ?>
-      <td>{{ $pdcUnique->nom_point_collecte }}</td>
-    <td>{{ $pdc->adresse }}
-    <td>{{ $pdc->ville }}</td>
-    <td>{{ $pdc->latitude }}</td>
-    <td>{{ $pdc->longitude }}</td>
-    <td>{{ $pdc->code_postal }}</td><?php
-        $first = false;
-    }
-  
-} ?>
 
 
 
    
+      <td>{{ $pdc->nom_point_collecte }}</td>
+      
+
+    <td>{{ $pdc->adresse }}
+    <td>{{ $pdc->ville }}</td>
+    <td>{{ $pdc->latitude }}</td>
+    <td>{{ $pdc->longitude }}</td>
+    <td>{{ $pdc->code_postal }}</td>
+  
+ 
+
 
 
                 </tr>
+                @endforeach
 
 
     </tbody>
@@ -109,13 +105,12 @@ foreach ( $pdcUnique as $pdc )
 
 <tbody>
 @foreach($contByPdc as $cont)
-@foreach($cont->historiqueconteneurtris as $history)
+
     <tr>
-    <td>{{ $pdcUnique->nom_point_collecte }}</td>
+
     <td>{!! $cont->nom_conteneur !!}</td>
         <td>{!! $cont->type_tri !!}</td>
-        <td>{!! $history->remplissage !!}</td>
-        <td>{!! $history->batterie !!}</td>
+      
         <td>{!! $cont->latitude !!}</td>
         <td>{!! $cont->longitude !!}</td>
         
@@ -126,7 +121,7 @@ foreach ( $pdcUnique as $pdc )
     
 
                 </tr>
-    @endforeach
+   
     @endforeach
 
     </tbody>
