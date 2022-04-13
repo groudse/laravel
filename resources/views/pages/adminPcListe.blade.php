@@ -44,7 +44,7 @@
     <tr>
     
     <td>{!! $pdc->nom_point_collecte !!}</td>
-    <td>{!! $pdc->adresse !!}</td>
+    <td>{!! $pdc->id !!}</td>
     <td>{!! $pdc->ville  !!}</td>
     <td>{!! $pdc->code_postal  !!}</td>
     <td>{!! $pdc->latitude  !!}</td>

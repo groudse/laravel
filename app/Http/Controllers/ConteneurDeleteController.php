@@ -25,6 +25,8 @@ class ConteneurDeleteController extends Controller
     public function DeletePointDeCollecte($id){
         $pointCollecte = PointDeCollecte::find($id);
         if(!is_null($pointCollecte)){
+            $pointCollecte->ConteneurTris('conteneur_tri_point_de_collectes')->delete();
+            $pointCollecte->HistoriqueConteneurTris()->delete();
             $pointCollecte->delete();
         }
         $pdc = PointDeCollecte::all();
