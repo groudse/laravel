@@ -35,7 +35,7 @@
 <input type="float"  name="longitude" placeholder="longitude" required><br>
 <input type="text" name="code_postal" placeholder="code postal" required><br>
 
-<a href="{{ route('BackControllerSavePc_path') }}"><button formtarget="_self" type="post" > Ajouter</button></a>
+<a href="{{ route('BackControllerSavePc_path') }}"><button formtarget="_self" type="post" > Enregistrer</button></a>
 </form>
     
 </body>

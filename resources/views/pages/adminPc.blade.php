@@ -66,6 +66,9 @@
 
     </tbody>
 </table> 
+
+<a  href="{{ route('adminpc-edit_path') }}"><button type="button"> 
+                Ajouter</button></a>
 </body>
 </html>
 
