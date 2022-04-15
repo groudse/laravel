@@ -55,7 +55,7 @@ class FrontController extends Controller
          $conts = PointDeCollecte::find($id)->getContenurTrisByPointCollecte($id);
 
          $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
-         dump ($conts);
+         
          
   
         return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));

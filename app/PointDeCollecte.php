@@ -54,41 +54,36 @@ ORDER  BY distance_m; ";
         $pdc = PointDeCollecte::find($idPointCollecte);
 
         $final = PointDeCollecte::getContenurTrisByPointCollecte($idPointCollecte);
+       dump($final);
     
-      
-
-      
-
         for($i = 0; $i<count($final); $i++){
-        
-            $link = DB::statement("INSERT INTO 
-            conteneur_tri_point_de_collectes (conteneur_tri_id, point_de_collecte_id)
-          SELECT
-            *
-          FROM
-            (
-              SELECT
-              '".$final[$i]->id."' AS conteneur_tri_id,
-                '".$pdc->id."' AS point_de_collecte_id
-            ) AS temp
-          WHERE
-            NOT EXISTS (
-              SELECT
-                conteneur_tri_id
-              FROM
-                conteneur_tri_point_de_collectes
-              WHERE
-                conteneur_tri_id = '".$final[$i]->id."'
-            )
-          LIMIT
-            1;"
+
+        $reqTestExist = DB::select("SELECT * FROM conteneur_tri_point_de_collectes WHERE conteneur_tri_id= '".$final[$i]->id."';");
+       
+       
+            
+            if(!empty($reqTestExist)){
+                $updateContenur = DB::update("UPDATE conteneur_tri_point_de_collectes 
+                SET point_de_collecte_id = '".$pdc->id."',
+                updated_at = now()
+                WHERE conteneur_tri_id = '".$final[$i]->id."';");
+                
+                
+            }else{
+                $addConteneur = DB::insert("INSERT INTO 
+                conteneur_tri_point_de_collectes (conteneur_tri_id, point_de_collecte_id,created_at,updated_at) VALUES ('".$final[$i]->id."','".$pdc->id."',now(),now());");
+                
+            }
+         
+                
           
             
             
             
-        }
+        
         
         
 
     }
+}
 }
