@@ -36,7 +36,8 @@
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Code postal</th>
-        <th>Conteneur</th>
+        <th>Informations</th>
+        <th>Historique</th>
         <th>Supprimer</th>
         
     </tr>
@@ -46,7 +47,7 @@
 @foreach ($point_de_collectes as $pdc)
     <tr>
     <td>{!! $pdc->nom_point_collecte !!}</td>
-        <td>{!! $pdc->id !!}</td>
+        <td>{!! $pdc->adresse !!}</td>
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
@@ -55,6 +56,10 @@
         <td><a href="{!! route('ContByPDC_path', 
             ['id' =>  $pdc->id ]) !!}"><button type="button"> 
                 Lien</button></a></td>
+
+        <td><a href="{!! route('ContByPDC_path', 
+            ['id' =>  $pdc->id ]) !!}"><button type="button"> 
+                Historique</button></a></td>        
                
         <td><a  href="{!! route('DeletePointDeCollecte_path', 
             ['id' => $pdc->id]) !!}"><button type="button"> 
