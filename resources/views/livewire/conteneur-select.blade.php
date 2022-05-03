@@ -44,3 +44,19 @@
     </p>
    @endif
 </div>
+
+
+<x-base-layout>
+    <div class="max-w-7xl mx-auto bg-white">
+        <div class="p-8">
+            <h3 class="font-bold text-2xl">Editer le programme</h3>
+        </div>
+        <hr>
+        <div class="p-8">
+            <livewire:component-one />
+        </div>
+        <div class="p-8" id="coursSectionWraper">
+            <livewire:component-two />
+        </div>
+    </div>
+</x-base-layout> 

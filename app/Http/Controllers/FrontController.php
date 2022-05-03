@@ -8,6 +8,8 @@ use App\PointDeCollecte;
 use App\HistoriqueConteneurTri;
 use App\ConteneurTriPointDeCollecte;
 
+
+
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
 use Illuminate\Support\Facades\Validator;

@@ -6,9 +6,13 @@ use App\PointDeCollecte;
 
 use Livewire\Component;
 
+namespace App\Http\Livewire;
+
+
+
 class ConteneurSelect extends Component
 {
-    public $pdc_id; // L'identifiant du pays country
+    /*public $pdc_id; // L'identifiant du pays country
     public $cont_id; // L'identifiant de la ville city
     public $conts; // la collection de villes cities
 
@@ -33,8 +37,21 @@ class ConteneurSelect extends Component
         return view('livewire.conteneur-select', [
             'countries' => $countries
         ]);
+    }*/
+
+
+    public $cerated_sections;
+
+    protected $listeners = ['refreshComponent' => '$refresh']; /*Note: activating the refresh*/
+
+    public function mount(){
+        $this->cerated_sections = PointDeCollecte::all();
     }
 
+    public function render()
+    {
+        return view('livewire.conteneur-select');
+    }
 
 
 

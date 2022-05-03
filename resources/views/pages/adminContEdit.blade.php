@@ -23,7 +23,7 @@
 
 <h1>Admin cont edi</h1>
 <form action=" " method="POST">
-@csrf
+  @csrf
 <input type="text" name="nom_conteneur" placeholder="Nom" required><br>
 <select  name="type_tri">
     <option value="Noir">noir</option>

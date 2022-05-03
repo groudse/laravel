@@ -50,6 +50,27 @@ class BackController extends Controller
 		}
 	}
 
+	public function deleteConteneur($id){
+        $conteneur = ConteneurTri::find($id);
+        if(!is_null($conteneur)){
+            $conteneur->delete();
+        }
+        $conteneurs = ConteneurTri::all();
+        return view('pages/adminCont')->with('conteneurs',$conteneurs);
+        
+    }
+
+    public function DeletePointDeCollecte($id){
+        $pointCollecte = PointDeCollecte::find($id);
+        if(!is_null($pointCollecte)){
+            $pointCollecte->ContTriPdc()->delete();
+            $pointCollecte->delete();
+        }
+        $pdc = PointDeCollecte::all();
+        return view('pages/adminPc')->with('point_de_collectes',$pdc);
+        
+    }
+
 /*	public function DeletePointDeCollecte($id){
         $pointCollecte = PointDeCollecte::find($id);
         if(!is_null($pointCollecte)){

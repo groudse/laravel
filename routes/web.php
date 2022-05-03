@@ -83,12 +83,12 @@ Route::get ('/gestion_index/rapport/edit', [
     
 Route::get ('/admin_index/adminpc/delete/{id}', [
     'as' => 'DeletePointDeCollecte_path',
-    'uses' => 'App\Http\Controllers\ConteneurDeleteController@DeletePointDeCollecte',
+    'uses' => 'App\Http\Controllers\BackController@DeletePointDeCollecte',
     ]);
 
 Route::get ('/admin_index/admincont/delete/{id}', [
     'as' => 'DeleteConteneur_path',
-    'uses' => 'App\Http\Controllers\ConteneurDeleteController@deleteConteneur',
+    'uses' => 'App\Http\Controllers\BackController@deleteConteneur',
     ]);
 
 

@@ -39,7 +39,7 @@
     var longitude = 2.349903;
     var macarte = null;
     var zoom =  5;
-    var balises =  {!! json_encode($leves) !!};
+   
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
