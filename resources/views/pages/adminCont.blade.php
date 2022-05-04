@@ -55,7 +55,7 @@
 <tbody>
     
    @foreach ($conteneurs as $conteneur)
-    
+
   
     <tr>
     <td>{!! $conteneur->id !!}</td>
@@ -65,26 +65,33 @@
     <td>{!! $conteneur->longitude  !!}</td>
     <td>{!! $conteneur->hauteur  !!}</td>
     <td>{!! $conteneur->adresse_modem  !!}</td>
+    
+        <?php 
+        $tot = $conteneur->pointdecollectes; 
+        if (sizeof($tot)==1){
+        ?> 
+                @foreach($conteneur->pointdecollectes as $pdc)
+                 <td>{{$pdc->nom_point_collecte}} </td>
+                 <td><a href="{!! route('DeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
+                 @endforeach 
+           <?php }else{?> 
+           
+                <td>Point de collecte trop loin</td>
+                <td><a href="{{ route('adminpc_path') }}"><button type="button">Lier</button></a></td>
+                <?php } ?>
+               
+      
+
    
-        
-@foreach ($conteneur->pointdecollectes as $pdc)  
-@if($pdc->nom_point_collecte == NULL))
-    {
-             <td>{{ $pdc->nom_point_collecte }}</td>
-    }
-    @else{
-            <td>Non lié</td>
-        }
-   @endif
        
  
      
        
-        <td><a href="{!! route('DeleteConteneur_path', ['id' => $conteneur->id]) !!}"><button type="button"> Supprimer</button></a></td> 
+        
         
     </tr>
           
-            @endforeach
+    
             @endforeach
 
 

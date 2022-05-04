@@ -39,7 +39,7 @@ class PointDeCollecte extends Model
 
 
     public function getContenurTrisByPointCollecte($idPointCollecte)
-    {
+    { 
         $pdc = PointDeCollecte::find($idPointCollecte);
       
         $reqSql = "SELECT *,(6371000 * Acos (Cos (Radians('" .$pdc->latitude. "')) * Cos(Radians(latitude)) *
@@ -68,7 +68,7 @@ ORDER  BY distance_m; ";
 
         $pdc = PointDeCollecte::find($idPointCollecte);
 
-        $final = PointDeCollecte::getContenurTrisByPointCollecte($idPointCollecte);
+        $final = PointDeCollecte::getContenurTrisByPointCollecte($idPointCollecte)->get();
      
         for($i = 0; $i<count($final); $i++){
 
