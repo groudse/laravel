@@ -38,8 +38,7 @@ class FrontController extends Controller
         
 
         $conteneurs = ConteneurTri::all(); 
-        dump ($conteneurs);
-        dump($items);
+        $allp = ConteneurTri::find(2);
     
         return view('pages/adminCont', compact(['conteneurs', 'items']));
     }

@@ -76,7 +76,7 @@
                  @endforeach 
            <?php }else{?> 
            
-                <td>Point de collecte trop loin</td>
+                <td>Non lié</td>
                 <td><a href="{{ route('adminpc_path') }}"><button type="button">Lier</button></a></td>
                 <?php } ?>
                
