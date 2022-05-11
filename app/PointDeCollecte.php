@@ -38,7 +38,7 @@ class PointDeCollecte extends Model
 
 
 
-    public function getContenurTrisByPointCollecte($idPointCollecte)
+    public function getConteneurTrisByPointCollecte($idPointCollecte)
     { 
         $pdc = PointDeCollecte::find($idPointCollecte);
       
@@ -68,7 +68,7 @@ ORDER  BY distance_m; ";
 
         $pdc = PointDeCollecte::find($idPointCollecte);
 
-        $final = PointDeCollecte::getContenurTrisByPointCollecte($idPointCollecte)->get();
+        $final = PointDeCollecte::getConteneurTrisByPointCollecte($idPointCollecte);
      
         for($i = 0; $i<count($final); $i++){
 

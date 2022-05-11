@@ -54,7 +54,7 @@ class FrontController extends Controller
         
          $pdcUnique = PointDeCollecte::where('id', $id)->take(1)->get();
 
-         $conts = PointDeCollecte::find($id)->getContenurTrisByPointCollecte($id);
+         $conts = PointDeCollecte::find($id)->getConteneurTrisByPointCollecte($id);
 
          $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
          
@@ -93,5 +93,12 @@ class FrontController extends Controller
 
     public function gestionRapportEdit(){
         return view('pages/gestionRapportEdit');
+    }
+
+    public function leves($id)
+    {
+        $saveLast = ConteneurTri::find($id)->saveLastLevee($id);
+
+        return redirect ('/accueil');
     }
 }

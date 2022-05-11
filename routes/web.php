@@ -40,10 +40,6 @@ Route::get ('/admin_index/adminpc/edit', [
     'uses' => 'App\Http\Controllers\FrontController@adminPcEdit',
     ]);
 
-Route::get ('/admin_index/adminpc/liste', [
-    'as' => 'adminpc-liste_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminPcListe',
-    ]);
 
 Route::get ('/admin_index/admincont', [
     'as' => 'admincont_path',
@@ -66,10 +62,6 @@ Route::get ('/admin_index/admincont/liste/', [
     ]);
 
 
-Route::get ('/gestion_index/liste', [
-    'as' => 'gestion-liste_path',
-    'uses' => 'App\Http\Controllers\FrontController@gestionListe',
-    ]);
 
 Route::get ('/gestion_index/rapport', [
     'as' => 'rapport_path',
@@ -92,11 +84,7 @@ Route::get ('/admin_index/admincont/delete/{id}', [
     ]);
 
 
-/*Route::get('/admin_index/admincont/edit/{code}',[
-    'as' => 'code_path',
-    'uses' => 'App\Http\Controllers\BackController@secureCode',
-]);*/
-  
+
 
 Route::post('/admin_index/admincont/edit', [
     'as' => 'BackControllerSaveCont_path',
@@ -109,3 +97,7 @@ Route::post('/admin_index/adminpc/edit', [
 ]);
 
 
+Route::get ('/gestion_index/leve/{id}', [
+    'as' => 'leve_path',
+    'uses' => 'App\Http\Controllers\FrontController@leves',
+    ]);
