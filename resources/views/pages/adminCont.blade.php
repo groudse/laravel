@@ -1,13 +1,4 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Livewire : Sélection Pays et Ville</title>
-        <!-- Styles livewire -->
-        @livewireStyles()
-    </head>
-    <body>
+
     <a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
 <a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
 <a href="{{ route('adminpc-edit_path') }}"><button type="button"> admin pc edit</button></a></br>
@@ -27,8 +18,6 @@
 <link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
 
 <h1>PAGE LISTE</h1>
-@auth  <p>The user is authenticated... </p>    @endauth
-@guest <p>The user is not authenticated...</p> @endguest
 
 
 
@@ -67,6 +56,8 @@
     
         <?php 
         $tot = $conteneur->pointdecollectes; 
+        
+    
         if (sizeof($tot)==1){
         ?> 
                 @foreach($conteneur->pointdecollectes as $pdc)
@@ -105,9 +96,6 @@
 
 
 
-
-    </body>
-</html>
 
 
 

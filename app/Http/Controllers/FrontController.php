@@ -35,11 +35,10 @@ class FrontController extends Controller
     public function admincont(){ 
         $items = PointDeCollecte::pluck('nom_point_collecte', 'id');
     
-        
 
         $conteneurs = ConteneurTri::all(); 
-        $allp = ConteneurTri::find(2);
-    
+        //$allp = ConteneurTri::find(2);
+        
         return view('pages/adminCont', compact(['conteneurs', 'items']));
     }
 
@@ -58,8 +57,7 @@ class FrontController extends Controller
 
          $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
          
-         
-  
+      
         return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
     }
 

@@ -1,13 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    @livewireStyles()
-</head>
-<body>
 
 <h1>Admin cont liste</h1>
 
@@ -49,7 +39,7 @@
    
 @foreach ( $pdcUnique ?? '' as $pdc )
     <tr>
-
+    
 
 
    
@@ -102,7 +92,7 @@
 @foreach($contByPdc as $cont)
 
     <tr>
-
+   
     <td>{!! $cont->nom_conteneur !!}</td>
         <td>{!! $cont->type_tri !!}</td>
       
@@ -125,6 +115,72 @@
 <a href="{{ route('adminpc_path') }}"><button>Retourner sur la liste des points de collectes</button></a>
 
 
-</body>
-</html>
+<br><br><br><br><br>
+<table>
+    <thead>
+    <tr>
+        <th colspan="7">Historique des levées</th>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Remplissage</th>
+        <th>Date</th>
+        
+    </tr>
+
+    </thead>
+
+
+
+@foreach($contByPdc as $cont)
+@foreach($cont->leves as $lev)
+
+
+
+   
+    
+       
+    
+         <?php
+       $tot =  $cont->leves;
+        
+    
+     
+            
+      
+       //dd($tot);    
+      if (sizeof($tot)==1){
+            ?> 
+                   
+                    <tr>
+                     <td>{{$cont->nom_conteneur}} </td>
+                     <td>{{ $lev->remplissage }}</td>
+                     <td>{{ $lev->date }}</td>
+                     </tr>
+                    
+                    
+                     
+                    
+                  
+    
+                    <?php }else{?> 
+               
+              
+                    <?php } ?>
+                    
+      
+    
+                   
+                  
+                    
+                    @endforeach
+                    @endforeach
+
+
+
+    </tbody>
+
+
+   
+</table>
 
