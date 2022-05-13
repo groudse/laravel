@@ -6,7 +6,7 @@
 <h2>Infos leves</h2>
 
 
-
+https://laratutorials.com/laravel-8-pdf-how-to-generate-pdf-in-laravel-8/
 
 
 

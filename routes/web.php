@@ -14,8 +14,22 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+use Dompdf\Dompdf;
+
 Route::get('/', function () {
-    return view('pages/accueil');
+    // instantiate and use the dompdf class
+$dompdf = new Dompdf();
+$dompdf->loadHtml(view('pages/accueil'));
+
+// (Optional) Setup the paper size and orientation
+$dompdf->setPaper('A4', 'landscape');
+
+// Render the HTML as PDF
+$dompdf->render();
+
+// Output the generated PDF to Browser
+$dompdf->stream('demo.pdf');
+    
 });
 
 Route::group(['prefix' => 'admin'], function () {
@@ -41,22 +55,16 @@ Route::middleware(['auth'])->group(function () {
             'uses' => 'App\Http\Controllers\FrontController@adminContListe',
             ]);
 
-        Route::get ('/admin_index/admincont/liste/', [
-            'as' => 'admincont-liste_path',
-            'uses' => 'App\Http\Controllers\FrontController@adminContListe',
-            ]);
+     
 
 
 
-        Route::get ('/gestion_index/rapport', [
+        Route::get ('/gestion_index/rapport/{id}', [
             'as' => 'rapport_path',
             'uses' => 'App\Http\Controllers\FrontController@gestionRapport',
             ]);
 
-        Route::get ('/gestion_index/rapport/edit', [
-            'as' => 'rapport-edit_path',
-            'uses' => 'App\Http\Controllers\FrontController@gestionRapportEdit',
-            ]);
+       
 
         Route::get ('/admin_index/adminpc/edit', [
             'as' => 'adminpc-edit_path',

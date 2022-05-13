@@ -7,9 +7,7 @@
 
 <a href="{{ route('admincont_path') }}"><button type="button">  admin cont</button></a></br>
 <a href="{{ route('admincont-edit_path') }}"><button type="button"> admin cont edit</button></a></br>
-<a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
 
-<a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
 
 
 
@@ -37,7 +35,7 @@
 
     <tbody>
    
-@foreach ( $pdcUnique ?? '' as $pdc )
+@foreach ( $pdcUnique as $pdc )
     <tr>
     
 
@@ -57,7 +55,7 @@
 
 
                 </tr>
-                @endforeach
+@endforeach
 
 
     </tbody>
@@ -135,20 +133,13 @@
 @foreach($contByPdc as $cont)
 @foreach($cont->leves as $lev)
 
-
-
-   
+ 
     
        
     
          <?php
        $tot =  $cont->leves;
-        
-    
-     
-            
-      
-       //dd($tot);    
+          
       if (sizeof($tot)==1){
             ?> 
                    
@@ -158,20 +149,13 @@
                      <td>{{ $lev->date }}</td>
                      </tr>
                     
-                    
-                     
-                    
-                  
     
                     <?php }else{?> 
                
               
                     <?php } ?>
                     
-      
-    
-                   
-                  
+
                     
                     @endforeach
                     @endforeach

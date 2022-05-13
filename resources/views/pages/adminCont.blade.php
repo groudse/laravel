@@ -15,7 +15,7 @@
 
 
 
-<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
+
 
 <h1>PAGE LISTE</h1>
 

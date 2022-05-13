@@ -40,23 +40,17 @@ class BackController extends Controller
 	}
 
 
-	function secureCode($code)
-	{
-		$conteneur = 789;
-		if($code == $conteneur){
-			return view('pages/accueil');
-		}else {
-			return view('pages/adminPc');
-		}
-	}
+
 
 	public function deleteConteneur($id){
         $conteneur = ConteneurTri::find($id);
+		$pdc = ConteneurTri::find($id)->PointDeCollectes()->get();
+		
         if(!is_null($conteneur)){
             $conteneur->delete();
         }
         $conteneurs = ConteneurTri::all();
-        return view('pages/adminCont')->with('conteneurs',$conteneurs);
+        return redirect("/admin_index/admincont/liste/{$pdc[0]->id}");
         
     }
 

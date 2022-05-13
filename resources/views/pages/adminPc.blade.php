@@ -15,10 +15,9 @@
 
 <a href="{{ route('admincont_path') }}"><button type="button">  admin cont</button></a></br>
 <a href="{{ route('admincont-edit_path') }}"><button type="button"> admin cont edit</button></a></br>
-<a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
 
-<a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
-<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
+
+
        
 
 
@@ -29,7 +28,7 @@
 <table>
 <thead>
     <tr>
-        <th colspan="8">Lorem ipsum</th>
+        <th colspan="10">Lorem ipsum</th>
     </tr>
     <tr>
         <th>Nom</th>
@@ -40,6 +39,7 @@
         <th>Code postal</th>
         <th>Informations</th>
         <th>Historique</th>
+        <th>Rapport</th>
         <th>Supprimer</th>
         
     </tr>
@@ -48,7 +48,7 @@
 <tbody>
 @foreach ($point_de_collectes as $pdc)
     <tr>
-    <td>{!! $pdc->nom_point_collecte !!}</td>
+        <td>{!! $pdc->nom_point_collecte !!}</td>
         <td>{!! $pdc->adresse !!}</td>
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
@@ -61,12 +61,19 @@
 
         <td><a href="{!! route('ContByPDC_path', 
             ['id' =>  $pdc->id ]) !!}"><button type="button"> 
-                Historique</button></a></td>        
+                Historique</button></a></td>    
+         
                
+        <td><a href="{!! route('rapport_path', 
+            ['id' =>  $pdc->id ]) !!}"><button type="button"> 
+                Rapport</button></a></td>  
+
         <td><a  href="{!! route('DeletePointDeCollecte_path', 
             ['id' => $pdc->id]) !!}"><button type="button"> 
                 Supprimer</button></a>
         </td> 
+
+       
         </tr>
    
     @endforeach

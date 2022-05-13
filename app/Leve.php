@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 
+
 class Leve extends Model
 {
     public function PointDeCollecte(){  
@@ -15,7 +16,9 @@ class Leve extends Model
         return $this->belongsTo(ConteneurTri::class,'conteneur_tri_id'); 
     }
 
-
-
     
+
 }
+    
+    
+

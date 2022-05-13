@@ -78,20 +78,14 @@ class FrontController extends Controller
         return view('pages/adminPcListe')->with('point_de_collectes',$pdc);
     }
 
-    /*Partie gestion*/
-    public function gestionListe(){
-        //$conteneur = ConteneurTri::find($id);
-        //$PointDeCollecte = $conteneur->PointDeCollectes();
-        //return view('pages/gestionListe')->with('PointDeCollecte',$PointDeCollecte)->with('ConteneurTri',$conteneur);
+
+    public function gestionRapport($id){
+        $leves = PointDeCollecte::find($id)->Leves()->get();
+        //dd($leves); 
+        
+        return view('pages/gestionRapport', compact (['leves']));
     }
 
-    public function gestionRapport(){
-        return view('pages/gestionRapport');
-    }
-
-    public function gestionRapportEdit(){
-        return view('pages/gestionRapportEdit');
-    }
 
     public function leves($id)
     {
@@ -99,4 +93,9 @@ class FrontController extends Controller
 
         return redirect ('/accueil');
     }
+
+
+
+  
+
 }

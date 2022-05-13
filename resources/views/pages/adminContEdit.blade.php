@@ -37,18 +37,7 @@
 
 </form>
 
-@auth
 
-// The user is login...
-
-@endauth
-
-
-@guest
-
-// The user is not login...
-
-@endguest
 
 
 </body>
