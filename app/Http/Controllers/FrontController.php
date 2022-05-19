@@ -7,7 +7,7 @@ use App\ConteneurTri;
 use App\PointDeCollecte;
 use App\HistoriqueConteneurTri;
 use App\ConteneurTriPointDeCollecte;
-
+use Dompdf\Dompdf;
 
 
 use Illuminate\Http\Request;
@@ -37,6 +37,8 @@ class FrontController extends Controller
     
 
         $conteneurs = ConteneurTri::all(); 
+
+        
         //$allp = ConteneurTri::find(2);
         
         return view('pages/adminCont', compact(['conteneurs', 'items']));
@@ -83,6 +85,18 @@ class FrontController extends Controller
         $leves = PointDeCollecte::find($id)->Leves()->get();
         //dd($leves); 
         
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(view('pages/gestionRapport', compact (['leves'])));
+        
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        
+        // Output the generated PDF to Browser
+        $dompdf->stream('demo.pdf');
+ 
         return view('pages/gestionRapport', compact (['leves']));
     }
 
