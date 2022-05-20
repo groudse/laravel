@@ -59,8 +59,8 @@ class FrontController extends Controller
 
          $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
          
-      
-        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
+         $lastLevee = PointDeCollecte::find($id)->HistoriqueConteneurTris()->get();
+        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique','lastLevee']));
     }
 
   

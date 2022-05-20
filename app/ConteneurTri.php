@@ -31,12 +31,16 @@ class ConteneurTri extends Model
        
 
        $reqContStatus = DB::insert("INSERT INTO leves (date, remplissage, point_de_collecte_id, conteneur_tri_id, created_at, updated_at) VALUES 
-       ('".$reqDate[0]->date."','".$reqRemplissage[0]->remplissage."','".$reqPdc[0]->point_de_collecte_id."','".$idConteneur."',now(),now()) ;");
-
-      
-       
-              
+       ('".$reqDate[0]->date."','".$reqRemplissage[0]->remplissage."','".$reqPdc[0]->point_de_collecte_id."','".$idConteneur."',now(),now()) ;");     
 
         
+    }
+
+    public function getLastLevee($idConteneur){
+        
+        $last = DB::select("SELECT * from historique_conteneur_tris WHERE point_de_collecte_id='".$idConteneur."'ORDER BY date DESC LIMIT 1; ");
+
+        $lastLev =  DB::select(DB::raw($last)) ;
+        return $lastLev;
     }
 }
