@@ -87,14 +87,24 @@
 </thead>
 
 <tbody>
+
 @foreach($contByPdc as $cont)
-@foreach($lastLevee as $last)
-    <tr>
-   
-    <td>{!! $cont->nom_conteneur !!}</td>
+
+@foreach($cont->historiqueconteneurtris as $lev)
+
+<tr>
+<td>{!! $cont->nom_conteneur !!}</td>
         <td>{!! $cont->type_tri !!}</td>
-        <td>{{$last->remplissage}}</td>
-        <td>{{$last->batterie}}</td>
+
+
+    
+   
+       
+
+        <td>{{$lev->remplissage}}</td>
+        <td>{{$lev->batterie}}</td>
+
+
         <td>{!! $cont->latitude !!}</td>
         <td>{!! $cont->longitude !!}</td>
         
@@ -105,9 +115,15 @@
     
 
                 </tr>
-   
-    @endforeach
-    @endforeach
+    
+       
+    
+            
+                    
+
+                    
+                    @endforeach
+                    @endforeach
 
     </tbody>
 </table> 
