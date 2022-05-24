@@ -1,4 +1,5 @@
-
+@extends ('layouts.default')
+@section('content')
 <h1>Admin cont liste</h1>
 
 <a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
@@ -15,7 +16,7 @@
 
 <link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
 
-<table>
+<table class="table">
     <thead>
     <tr>
         <th colspan="7">Lorem ipsum</th>
@@ -69,7 +70,7 @@
 
 
 
-<table>
+<table class="table">
 <thead>
     <tr>
         <th colspan="7">Lorem ipsum</th>
@@ -186,3 +187,4 @@
    
 </table>
 
+@stop

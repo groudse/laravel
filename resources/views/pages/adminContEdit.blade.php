@@ -1,3 +1,5 @@
+@extends ('layouts.default')
+@section('content')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,9 +16,7 @@
 
 <a href="{{ route('admincont_path') }}"><button type="button">  admin cont</button></a></br>
 <a href="{{ route('admincont-edit_path') }}"><button type="button"> admin cont edit</button></a></br>
-<a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
 
-<a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
 
 
 
@@ -44,6 +44,6 @@
 </html>
 
 
-
+@stop
 
 

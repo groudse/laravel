@@ -118,7 +118,17 @@ nav > ul > li:hover > a{
 .menu-deroulant:hover > .sous-menu {
   animation: apparitionSousMenu 1s forwards;
 }
-table, th, td {
-    border: 1px solid black;
-    border-collapse: collapse;
-    text-align: center;} 
+</style>
+
+table,
+td {
+    border: 1px solid #333;
+}
+
+thead,
+tfoot {
+    background-color: #00BFFF;
+}
+
+
+
