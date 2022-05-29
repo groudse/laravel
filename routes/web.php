@@ -56,11 +56,8 @@ Route::middleware(['auth'])->group(function () {
 
        
 
-        Route::get ('/admin_index/adminpc/edit', [
-            'as' => 'adminpc-edit_path',
-            'uses' => 'App\Http\Controllers\FrontController@adminPcEdit',
-            ]);
-            
+        
+                
             
         Route::get ('/admin_index/admincont', [
             'as' => 'admincont_path',
@@ -96,6 +93,11 @@ Route::middleware(['auth'])->group(function () {
             'uses' => 'App\Http\Controllers\BackController@save_cont',
             
         ]);
+
+        Route::get ('/admin_index/adminpc/edit', [
+            'as' => 'adminpc-edit_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminPcEdit',
+            ]);
 
 
         Route::post('/admin_index/adminpc/edit', [

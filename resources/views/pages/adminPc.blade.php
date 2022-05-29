@@ -3,9 +3,19 @@
 
 
 
-
-
-       
+<?php
+/*
+   $to_email = "vocsplay@gmail.com";
+   $subject = "Simple Email Test via PHP";
+   $body = "Hi,\n This is test email send by PHP Script";
+   $headers = "From: sender@example.com";
+ 
+   if ( mail($to_email, $subject, $body, $headers)) {
+      echo("Email successfully sent to $to_email...");
+   } else {
+      echo("Email sending failed...");
+   }*/
+?>
 
 
 <table class="table">
@@ -21,7 +31,6 @@
         <th>Longitude</th>
         <th>Code postal</th>
         <th>Informations</th>
-        <th>Historique</th>
         <th>Rapport</th>
         <th>Supprimer</th>
         
@@ -43,9 +52,7 @@
             ['id' =>  $pdc->id ]) !!}" role="button"> 
                 Lien</a></td>
 
-        <td><a href="{!! route('ContByPDC_path', 
-            ['id' =>  $pdc->id ]) !!}" role="button"> 
-                Historique</a></td>    
+     
          
                
         <td><a  href="{!! route('rapport_path', 

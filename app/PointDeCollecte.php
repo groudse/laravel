@@ -27,6 +27,15 @@ class PointDeCollecte extends Model
         return $this->hasMany(ConteneurTriPointDeCollecte::class, 'point_de_collecte_id');
     }
 
+    public function dernierCont()
+    {
+        $last = DB::select("SELECT id from conteneur_tris ORDER BY updated_at DESC LIMIT 1; ");
+
+        $lastLev =  DB::select(DB::raw($last)) ;
+        
+    }
+
+
 
 
 /**
@@ -81,24 +90,6 @@ ORDER  BY distance_m; ";
                 SET point_de_collecte_id = '".$pdc->id."',
                 updated_at = now()
                 WHERE conteneur_tri_id = '".$final[$i]->id."';");
-
-                //$date = DB::select("SELECT DATE_FORMAT(updated_at, "%Y/%M/%e/%T") FROM conteneur_tri_point_de_collectes WHERE conteneur_tri_id= '".$final[$i]->id."';");
-
-
-            /*
-              
-                $date1 = date("Y-m-d H:i:s"); 
-            
-                $date2 = date( 'Y-m-d H:i:s', $date );
-                
-                $diff = abs(strtotime($date2) - strtotime($date1));
-                
-                $years = floor($diff / (365*60*60*24));
-                $months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
-                $days = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
-                
-                printf("%d years, %d months, %d days\n", $years, $months, $days);
-                */
                 
             }else{
                 $addConteneur = DB::insert("INSERT INTO 
