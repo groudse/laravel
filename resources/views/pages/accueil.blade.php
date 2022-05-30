@@ -18,7 +18,7 @@
     </div>
 </div>
 
-
+{{--
 <!-- Fichiers Javascript
 https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-openstreetmap-sur-votre-site-->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
@@ -31,7 +31,7 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
     var macarte = null;
     var zoom =  5;
 
-    var pointcollectes =  {!! json_encode($pdcMap) !!};
+   var pointcollectes =  {!! json_encode($pdcMap) !!}; 
 <?php dump($pdcMap); ?>
     // Fonction d'initialisation de la carte
     function initMap() {
@@ -56,7 +56,7 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
         initMap();
     };
 
-</script>
+</script>--}}
 
 
 @stop

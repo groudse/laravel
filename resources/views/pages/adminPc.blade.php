@@ -31,10 +31,6 @@
         <th>Longitude</th>
         <th>Code postal</th>
         <th>Informations</th>
-<<<<<<< HEAD
-      
-=======
->>>>>>> 4ab376a5e46236740b87ed08b649c47a930c5d27
         <th>Rapport</th>
         <th>Supprimer</th>
         
@@ -56,11 +52,6 @@
             ['id' =>  $pdc->id ]) !!}" role="button"> 
                 Lien</a></td>
 
-<<<<<<< HEAD
-
-=======
-     
->>>>>>> 4ab376a5e46236740b87ed08b649c47a930c5d27
          
                
         <td><a  href="{!! route('rapport_path', 

@@ -20,7 +20,7 @@ class FrontController extends Controller
     /*Accueil*/
     public function accueil(){ 
         $pdc = PointDeCollecte::all();
-
+        /*
         $pdcMap = array();
         
         // construit le tableau des marqueurs de balises (pour la carte)
@@ -43,12 +43,12 @@ class FrontController extends Controller
             $balisesMap[$infosMarker] = array('lat' => $rPdc->latitude, 'lon' => $rPdc->longitude);
 
 
+                 */
 
 
-
-        return view('pages/accueil', compact(['pdc','pdcMap']));
+        return view('pages/accueil', compact(['pdc']));
     }
-}
+
 
 
     
