@@ -15,28 +15,21 @@
                         <li class="menu-deroulant">
                             <a class="nav-link" href="#">Gestion</a>
                             <ul class="sous-menu">
-                                <li><a href="{{ route('admincont_path') }}">Liste</a></li>
-                                
+                                <li><a href="{{ route('adminpc_path') }}">Points de collectes</a></li>
                             </ul>
                         </li>
                     
                         <li class="menu-deroulant">
-                            <a class="nav-link" href="#">Administration</a>
+                            <a class="nav-link" href="#">Ajouter</a>
                             <ul class="sous-menu">
-                                <li><a href="{{ route('adminpc_path') }}">Point de collecte</a></li>
+                                <li><a href="{{ route('adminpc-edit_path') }}">Point de collecte</a></li>
                                 <li><a href="{{ route('admincont-edit_path') }}">Conteneur</a></li>
                             </ul>
                         </li>
                 @endif
             @endauth
 
-            <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-            </li>
-
-            <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-            </li>
+       
         </ul>
         <ul class="navbar-nav ml-auto">
         @auth

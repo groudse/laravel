@@ -19,10 +19,37 @@ class FrontController extends Controller
 {
     /*Accueil*/
     public function accueil(){ 
-        $ledves = Leve::all()->last();
-        $leves = PointDeCollecte::all();
-        return view('pages/accueil', compact(['leves']));
+        $pdc = PointDeCollecte::all();
+
+        $pdcMap = array();
+        
+        // construit le tableau des marqueurs de balises (pour la carte)
+        foreach ($pdc as $rPdc) {
+            // crée le lien vers la fiche balise
+            $lien = "<a href=\"" . route('adminpc_path', ['id' => $rPdc->id]) . "\">" . $rPdc->nom_point_collecte . "</a>";
+            // récupère le relevé le plus récent
+            dd($rPdc->dernierCont());
+            $relevePdc = $rPdc->dernierCont();
+            //dd($relevePdc);
+            if ($relevePdc){
+                // crée le HTML d'info sur la balise
+                $infosBalise = "<p> Nom : " . $relevePdc["id"] . "</p>";
+                //$infosBalise .= "<p> Remplissage : " . $relevePdc["remplissage"] . "</p>";
+                //$infosBalise .= "<p> Batterie : " . $relevePdc["batterir"] . "</p>";
+            }
+            // construit le descripteur de marqueur de balise (c'est une chaîne de caractère)
+            $infosMarker = $lien . $infosBalise;
+            // ajoute le marqueur au tableau, avec sa géolocalisation
+            $balisesMap[$infosMarker] = array('lat' => $rPdc->latitude, 'lon' => $rPdc->longitude);
+
+
+
+
+
+        return view('pages/accueil', compact(['pdc','pdcMap']));
     }
+}
+
 
     
 
@@ -39,13 +66,11 @@ class FrontController extends Controller
         $conteneurs = ConteneurTri::all(); 
 
         
-        //$allp = ConteneurTri::find(2);
         
         return view('pages/adminCont', compact(['conteneurs', 'items']));
     }
 
     public function adminContEdit(){
-
         return view('pages/adminContEdit');
     }
 
@@ -71,8 +96,8 @@ class FrontController extends Controller
     }
 
     public function adminPcEdit(){
-        $conteneurs = ConteneurTri::all();
-        return view('pages/adminPcEdit')->with('conteneurs', $conteneurs);
+        
+        return view('pages/adminPcEdit');
     }
 
     public function adminPcListe(){

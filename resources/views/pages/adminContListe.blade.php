@@ -2,19 +2,12 @@
 @section('content')
 <h1>Admin cont liste</h1>
 
-<a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
-<a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
-<a href="{{ route('adminpc-edit_path') }}"><button type="button"> admin pc edit</button></a></br>
 
-<a href="{{ route('admincont_path') }}"><button type="button">  admin cont</button></a></br>
-<a href="{{ route('admincont-edit_path') }}"><button type="button"> admin cont edit</button></a></br>
+<meta http-equiv="refresh" content="1800">
 
 
 
 
-
-
-<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
 
 <table class="table">
     <thead>
@@ -73,7 +66,7 @@
 <table class="table">
 <thead>
     <tr>
-        <th colspan="7">Lorem ipsum</th>
+        <th colspan="8">Conteneurs associés</th>
     </tr>
     <tr>
         <th>Nom</th>
@@ -83,6 +76,7 @@
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Supprimer</th>
+        <th>Statut</th>
         
     </tr>
 </thead>
@@ -110,26 +104,39 @@
         <td>{!! $cont->longitude !!}</td>
         
         <td><a  href="{!! route('DeleteConteneur_path', 
-            ['id' => $cont->id]) !!}"><button type="button"> 
-                Supprimer</button></a>
+            ['id' => $cont->id]) !!}" role="button"> 
+                Supprimer</a>
         </td> 
-    
+            
+
+        <?php 
+            if(($lev->remplissage >= 70) or ($lev->batterie <= 30)){
+                ?>
+                <td bgcolor="#F00C0C"></td>
+
+           <?php }elseif(($lev->remplissage >= 50) or ($lev->batterie <= 50)){
+                ?>
+                <td bgcolor="#FF9E00"></td>
+
+                <?php }else{
+                    ?>
+                <td bgcolor="#0EC80E"></td>    
+            <?php }?>
+
+
+        
 
                 </tr>
     
        
-    
-            
-                    
-
-                    
+          
                     @endforeach
                     @endforeach
 
     </tbody>
 </table> 
 
-<a href="{{ route('adminpc_path') }}"><button>Retourner sur la liste des points de collectes</button></a>
+<a href="{{ route('adminpc_path') }}" role=button>Retourner sur la liste des points de collectes</a>
 
 
 <br><br><br><br><br>
