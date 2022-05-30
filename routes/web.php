@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 use Dompdf\Dompdf;
 
 Route::get('/', function () {
-    // instantiate and use the dompdf class
+    return view('pages/accueil');
 
     
 });
