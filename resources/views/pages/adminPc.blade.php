@@ -21,7 +21,7 @@
         <th>Longitude</th>
         <th>Code postal</th>
         <th>Informations</th>
-        <th>Historique</th>
+      
         <th>Rapport</th>
         <th>Supprimer</th>
         
@@ -43,9 +43,7 @@
             ['id' =>  $pdc->id ]) !!}" role="button"> 
                 Lien</a></td>
 
-        <td><a href="{!! route('ContByPDC_path', 
-            ['id' =>  $pdc->id ]) !!}" role="button"> 
-                Historique</a></td>    
+
          
                
         <td><a  href="{!! route('rapport_path', 
