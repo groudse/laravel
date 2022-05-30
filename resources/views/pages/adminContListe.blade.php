@@ -1,6 +1,6 @@
 @extends ('layouts.default')
 @section('content')
-<h1>Admin cont liste</h1>
+
 
 
 <meta http-equiv="refresh" content="1800">
@@ -12,7 +12,7 @@
 <table class="table">
     <thead>
     <tr>
-        <th colspan="7">Lorem ipsum</th>
+        <th colspan="7">Point de collecte</th>
     </tr>
     <tr>
         <th>Nom</th>

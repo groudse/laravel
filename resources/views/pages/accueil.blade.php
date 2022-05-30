@@ -18,7 +18,7 @@
     </div>
 </div>
 
-{{--
+
 <!-- Fichiers Javascript
 https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-openstreetmap-sur-votre-site-->
 <script src="https://unpkg.com/leaflet@1.3.1/dist/leaflet.js"
@@ -31,8 +31,8 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
     var macarte = null;
     var zoom =  5;
 
-   var pointcollectes =  {!! json_encode($pdcMap) !!}; 
-<?php dump($pdcMap); ?>
+    {{-- var pointcollectes =  {!! json_encode($pdcMap) !!};   
+<?php dump($pdcMap); ?>--}} 
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -45,18 +45,18 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
             maxZoom: 20
         }).addTo(macarte);
 
-        for (var pdc in pointcollectes) {
+       {{-- for (var pdc in pointcollectes) {
             var marker = L.marker([pointcollectes[pdc].lat, pointcollectes[pdc].lon]).addTo(macarte);
             marker.bindPopup(pdc);
 
-        }
+        }--}} 
     }
     window.onload = function(){
         // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé
         initMap();
     };
 
-</script>--}}
+</script>
 
 
 @stop

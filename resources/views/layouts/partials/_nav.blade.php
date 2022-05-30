@@ -15,7 +15,8 @@
                         <li class="menu-deroulant">
                             <a class="nav-link" href="#">Gestion</a>
                             <ul class="sous-menu">
-                                <li><a href="{{ route('adminpc_path') }}">Points de collectes</a></li>
+                                <li><a href="{{ route('adminpc_path') }}">Liste</a></li>
+                                
                             </ul>
                         </li>
                     
@@ -29,14 +30,20 @@
                 @endif
             @endauth
 
-       
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#"></a>
+            </li>
         </ul>
         <ul class="navbar-nav ml-auto">
         @auth
         
         <li class="nav-item"><a class="nav-link" href="{{ route('voyager.dashboard') }}"role="button">Se déconnecter</a></li>
 
-          
+       
            
 
         @endauth    

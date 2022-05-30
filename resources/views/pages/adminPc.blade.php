@@ -21,7 +21,7 @@
 <table class="table">
 <thead>
     <tr>
-        <th colspan="10">Points de collectes</th>
+        <th colspan="9">Points de collectes</th>
     </tr>
     <tr>
         <th>Nom</th>
