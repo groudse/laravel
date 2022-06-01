@@ -25,11 +25,11 @@ class ConteneurTri extends Model
     public function saveLastLevee($idConteneur){
         
         $reqRemplissage = DB::select("SELECT remplissage from historique_conteneur_tris where 
-        conteneur_tri_id= '".$idConteneur."' ORDER BY date DESC LIMIT 1;");
+            conteneur_tri_id= '".$idConteneur."' ORDER BY date DESC LIMIT 1;");
         $reqDate =  DB::select("SELECT date from historique_conteneur_tris where 
-        conteneur_tri_id= '".$idConteneur."' ORDER BY date DESC LIMIT 1;");
+            conteneur_tri_id= '".$idConteneur."' ORDER BY date DESC LIMIT 1;");
         $reqPdc = DB::select("SELECT point_de_collecte_id from conteneur_tri_point_de_collectes where 
-        conteneur_tri_id= '".$idConteneur."';");
+            conteneur_tri_id= '".$idConteneur."';");
 
        $reqContStatus = DB::insert("INSERT INTO leves (date, remplissage, point_de_collecte_id, conteneur_tri_id, created_at, updated_at) VALUES 
        ('".$reqDate[0]->date."','".$reqRemplissage[0]->remplissage."','".$reqPdc[0]->point_de_collecte_id."','".$idConteneur."',now(),now()) ;");     
@@ -45,4 +45,16 @@ class ConteneurTri extends Model
         $lastLev =  DB::select(DB::raw($last)) ;
         return $lastLev;
     }
+
+    public function dernierCont()
+    {
+       // $last = DB::select("SELECT id from conteneur_tris ORDER BY updated_at DESC LIMIT 1; ");
+        return ConteneurTriPointDeCollecte::where('point_de_collecte_id', $this->id)->first();
+
+        
+    }
+
+   
+
+
 }

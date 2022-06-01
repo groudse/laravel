@@ -34,7 +34,7 @@ Route::get ('/accueil', [
     'uses' => 'App\Http\Controllers\FrontController@accueil',
     ]);
 
-
+ 
 
 
 Route::middleware(['auth'])->group(function () {

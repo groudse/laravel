@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
-
+use App\Http\Controllers\BackController;
 
 
 class PointDeCollecte extends Model
@@ -27,13 +27,7 @@ class PointDeCollecte extends Model
         return $this->hasMany(ConteneurTriPointDeCollecte::class, 'point_de_collecte_id');
     }
 
-    public function dernierCont()
-    {
-        $last = DB::select("SELECT id from conteneur_tris ORDER BY updated_at DESC LIMIT 1; ");
-
-        $lastLev =  DB::select(DB::raw($last)) ;
-        
-    }
+   
 
 
 
@@ -55,13 +49,15 @@ class PointDeCollecte extends Model
                          Cos(Radians(longitude) - Radians('" .$pdc->longitude. "'))
                            + Sin (Radians('" .$pdc->latitude. "')) *
                              Sin(Radians(latitude)))
-       ) AS distance_m
-FROM   conteneur_tris
-HAVING distance_m < 100
-ORDER  BY distance_m; ";
-
+            ) AS distance_m
+        FROM   conteneur_tris
+        HAVING distance_m < 100
+        ORDER  BY distance_m; ";
+        
     $contOnPdc =  DB::select(DB::raw($reqSql)) ;
+   
         return $contOnPdc;
+        
     }
 
 
@@ -70,7 +66,6 @@ ORDER  BY distance_m; ";
  * @brief Lie automatiquement 1 point de collecte à plusieurs conteneurs grâce à la fonction getContenurTrisByPointCollecte($idPointCollecte) 
  * ou mets à jour les indormations 
  * @param idPointCollecte
- * @return 0
  */
 
     public function LinkContToPdc($idPointCollecte){
@@ -101,4 +96,56 @@ ORDER  BY distance_m; ";
         }
         
     }
+
+    public function checkStatus($id){
+        
+        $Pdc = PointDecollecte::find($id);
+        $cont = PointDeCollecte::find($id)->ConteneurTris($id)->get();
+
+        $getPdc = DB::select("SELECT COUNT(conteneur_tri_id) from historique_conteneur_tris 
+            WHERE point_de_collecte_id='".$id."'");
+
+        $getContStatut = DB::select("SELECT * from historique_conteneur_tris WHERE point_de_collecte_id='".$id."'");
+
+        $count = 0;
+        $final = " ";
+        
+            for($i=0; $i<count($getContStatut); $i++){
+                
+                $tracker = "La batterie du";
+                $action = "veuillez la remplacer.";
+                $aim = "batterie";
+                
+                
+                
+                if($getContStatut[$i]->remplissage >= 70 or  $getContStatut[$i]->batterie <= 30){
+
+                    if($getContStatut[$i]->remplissage >= 70){
+                            $tracker = "Le remplissage du";
+                            $action = "veuillez vider le conteneur.";
+                            $aim = "remplissage";
+                    }
+
+
+                    
+                        $mailFin = " ".$tracker."  ".$cont[$i]->nom_conteneur." situé au ".$Pdc->nom_point_collecte." est à ".$getContStatut[$i]->$aim." % ".$action."";
+                        $final  = $final." ".$mailFin;
+                        $count = 1;
+                }
+                
+                
+            }
+            if($count == 1){
+            $details = [
+            'title' => $final,
+            
+                ];
+
+                
+                \Mail::to('vocsplay@gmail.com')->send(new \App\Mail\MyTestMail($details));
+            }
+            
+    }
+
+
 }
