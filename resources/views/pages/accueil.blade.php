@@ -31,8 +31,8 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
     var macarte = null;
     var zoom =  5;
 
-    {{-- var pointcollectes =  {!! json_encode($pdcMap) !!};   
-<?php dump($pdcMap); ?>--}} 
+     var pdc =  {!! json_encode($pdcMap) !!};   
+   
     // Fonction d'initialisation de la carte
     function initMap() {
         // Créer l'objet "macarte" et l'insèrer dans l'élément HTML qui a l'ID "map"
@@ -45,11 +45,13 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
             maxZoom: 20
         }).addTo(macarte);
 
-       {{-- for (var pdc in pointcollectes) {
-            var marker = L.marker([pointcollectes[pdc].lat, pointcollectes[pdc].lon]).addTo(macarte);
-            marker.bindPopup(pdc);
+        for (var cont in pdc) {
+            var marker = L.marker([pdc[cont].lat, pdc[cont].lon]).addTo(macarte);
+            marker.bindPopup(cont);
+           
+         
 
-        }--}} 
+        }
     }
     window.onload = function(){
         // Fonction d'initialisation qui s'exécute lorsque le DOM est chargé

@@ -20,34 +20,48 @@ class FrontController extends Controller
     /*Accueil*/
     public function accueil(){ 
         $pdc = PointDeCollecte::all();
-        /*
+       
+        
         $pdcMap = array();
+
+
+
+
         
         // construit le tableau des marqueurs de balises (pour la carte)
-        foreach ($pdc as $rPdc) {
+        foreach ($pdc as $rcont) {
+            
             // crée le lien vers la fiche balise
-            $lien = "<a href=\"" . route('adminpc_path', ['id' => $rPdc->id]) . "\">" . $rPdc->nom_point_collecte . "</a>";
+            $lien = "<a href=\"" . route('ContByPDC_path', ['id' => $rcont->id]) . "\"> </a>";
+            
+            
+            
             // récupère le relevé le plus récent
-            dd($rPdc->dernierCont());
-            $relevePdc = $rPdc->dernierCont();
-            //dd($relevePdc);
-            if ($relevePdc){
+            $releveCont = $rcont->dernierCont();
+            
+            if ($releveCont){
+               
                 // crée le HTML d'info sur la balise
-                $infosBalise = "<p> Nom : " . $relevePdc["id"] . "</p>";
-                //$infosBalise .= "<p> Remplissage : " . $relevePdc["remplissage"] . "</p>";
-                //$infosBalise .= "<p> Batterie : " . $relevePdc["batterir"] . "</p>";
+                $infosCont = "<p> Nom : " . $releveCont["nom_conteneur"] . "</p>";
+                
+                $infosCont .= "<p> Remplissage : " . $releveCont->HistoriqueConteneurTris()->get('remplissage') . "</p>";
+                
+                $infosCont .= "<p> Batterie : " . $releveCont->HistoriqueConteneurTris()->get('batterie') . "</p>";
+                
             }
             // construit le descripteur de marqueur de balise (c'est une chaîne de caractère)
-            $infosMarker = $lien . $infosBalise;
+            $infosMarker = $lien . $infosCont;
+          
             // ajoute le marqueur au tableau, avec sa géolocalisation
-            $balisesMap[$infosMarker] = array('lat' => $rPdc->latitude, 'lon' => $rPdc->longitude);
+            $pdcMap[$infosMarker] = array('lat' => $rcont->latitude, 'lon' => $rcont->longitude);
+            
 
+                 
 
-                 */
-
-
-        return view('pages/accueil', compact(['pdc']));
+        }
+        return view('pages/accueil', compact(['pdc','pdcMap']));
     }
+
 
 
 
@@ -77,15 +91,13 @@ class FrontController extends Controller
     public function adminContListe($id){
        
          $contByPdc = PointDeCollecte::find($id)->ConteneurTris()->get();
-        
          $pdcUnique = PointDeCollecte::where('id', $id)->take(1)->get();
-
          $conts = PointDeCollecte::find($id)->getConteneurTrisByPointCollecte($id);
-
          $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
+         $mail = PointDeCollecte::find($id)->checkStatus($id);
          
-         $lastLevee = PointDeCollecte::find($id)->HistoriqueConteneurTris()->get();
-        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique','lastLevee']));
+
+        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
     }
 
   
@@ -129,7 +141,6 @@ class FrontController extends Controller
     public function leves($id)
     {
         $saveLast = ConteneurTri::find($id)->saveLastLevee($id);
-
         return redirect ('/accueil');
     }
 
