@@ -138,7 +138,6 @@
 
 <a href="{{ route('adminpc_path') }}" role=button>Retourner sur la liste des points de collectes</a>
 
-
 <br><br><br><br><br>
 <table>
     <thead>

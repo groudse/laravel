@@ -30,34 +30,44 @@ class FrontController extends Controller
         
         // construit le tableau des marqueurs de balises (pour la carte)
         foreach ($pdc as $rcont) {
-            
+            foreach($rcont->conteneurtris as $rconn) {
+                
             // crée le lien vers la fiche balise
             $lien = "<a href=\"" . route('ContByPDC_path', ['id' => $rcont->id]) . "\"> </a>";
             
             
             
             // récupère le relevé le plus récent
-            $releveCont = $rcont->dernierCont();
+            $releveCont = $rconn;
             
             if ($releveCont){
-               
+                
                 // crée le HTML d'info sur la balise
-                $infosCont = "<p> Nom : " . $releveCont["nom_conteneur"] . "</p>";
+                $data = $releveCont["nom_conteneur"];
+               
+                $infosCont = "<p> Nom : " . $data . "</p>";
                 
-                $infosCont .= "<p> Remplissage : " . $releveCont->HistoriqueConteneurTris()->get('remplissage') . "</p>";
+                $data = $rconn->HistoriqueConteneurTris()->get();
                 
-                $infosCont .= "<p> Batterie : " . $releveCont->HistoriqueConteneurTris()->get('batterie') . "</p>";
+
+                $infosCont .= "<p> Remplissage : " . $data[0]->remplissage . "</p>";
+
+                $data = $rconn->HistoriqueConteneurTris()->get();
+                
+                $infosCont .= "<p> Batterie : " . $data[0]->batterie . "</p>";
+
+                $infosCont .= "<p> Point de collecte :" .$rcont->nom_point_collecte. "</p>";
                 
             }
             // construit le descripteur de marqueur de balise (c'est une chaîne de caractère)
             $infosMarker = $lien . $infosCont;
           
             // ajoute le marqueur au tableau, avec sa géolocalisation
-            $pdcMap[$infosMarker] = array('lat' => $rcont->latitude, 'lon' => $rcont->longitude);
-            
+            $pdcMap[$infosMarker] = array('lat' => $rconn->latitude, 'lon' => $rconn->longitude);
+                       
 
                  
-
+        }
         }
         return view('pages/accueil', compact(['pdc','pdcMap']));
     }

@@ -46,11 +46,12 @@ https://nouvelle-techno.fr/actualites/2018/05/11/pas-a-pas-inserer-une-carte-ope
         }).addTo(macarte);
 
         for (var cont in pdc) {
+            
             var marker = L.marker([pdc[cont].lat, pdc[cont].lon]).addTo(macarte);
             marker.bindPopup(cont);
            
-         
 
+        
         }
     }
     window.onload = function(){
