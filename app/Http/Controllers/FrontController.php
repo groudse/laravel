@@ -26,7 +26,7 @@ class FrontController extends Controller
 
 
 
-
+       
         
         // construit le tableau des marqueurs de balises (pour la carte)
         foreach ($pdc as $rcont) {
@@ -35,13 +35,13 @@ class FrontController extends Controller
             // crée le lien vers la fiche balise
             $lien = "<a href=\"" . route('ContByPDC_path', ['id' => $rcont->id]) . "\"> </a>";
             
-            
-            
+              
+
+           
             // récupère le relevé le plus récent
             $releveCont = $rconn;
             
             if ($releveCont){
-                
                 // crée le HTML d'info sur la balise
                 $data = $releveCont["nom_conteneur"];
                
@@ -65,7 +65,7 @@ class FrontController extends Controller
             // ajoute le marqueur au tableau, avec sa géolocalisation
             $pdcMap[$infosMarker] = array('lat' => $rconn->latitude, 'lon' => $rconn->longitude);
                        
-
+           
                  
         }
         }
