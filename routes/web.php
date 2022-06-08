@@ -14,88 +14,105 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+use Dompdf\Dompdf;
 
+Route::get('/',  [
+    'uses' => 'App\Http\Controllers\FrontController@accueil',
+
+    
+    
+]);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
+
+
+
 
 Route::get ('/accueil', [
     'as' => 'accueil_path',
     'uses' => 'App\Http\Controllers\FrontController@accueil',
     ]);
 
-Route::get ('/admin_index/adminpc', [
-    'as' => 'adminpc_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminPc',
-    ]);
-
-Route::get ('/admin_index/adminpc/edit', [
-   'as' => 'adminpc-edit_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminPcEdit',
-    ]);
-
-Route::get ('/admin_index/adminpc/liste', [
-    'as' => 'adminpc-liste_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminPcListe',
-    ]);
-
-Route::get ('/admin_index/admincont', [
-    'as' => 'admincont_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminCont',
-    ]);
-
-Route::get ('/admin_index/admincont/edit', [
-    'as' => 'admincont-edit_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminContEdit',
-    ]);
-
-Route::get ('/admin_index/admincont/liste', [
-    'as' => 'admincont-liste_path',
-    'uses' => 'App\Http\Controllers\FrontController@adminContListe',
-    ]);
+ 
 
 
-Route::get ('/gestion_index/liste', [
-    'as' => 'gestion-liste_path',
-    'uses' => 'App\Http\Controllers\FrontController@gestionListe',
-    ]);
+Route::middleware(['auth'])->group(function () {
 
-Route::get ('/gestion_index/rapport', [
-    'as' => 'rapport_path',
-    'uses' => 'App\Http\Controllers\FrontController@gestionRapport',
-    ]);
-
-Route::get ('/gestion_index/rapport/edit', [
-    'as' => 'rapport-edit_path',
-    'uses' => 'App\Http\Controllers\FrontController@gestionRapportEdit',
-    ]);
     
-//partie pour le add
+        Route::get ('/admin_index/admincont/liste/{id}', [
+            'as' => 'ContByPDC_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminContListe',
+            ]);
 
-//Route::post('/admin_index/admincont/edit','App\Http\Controllers\BackController@save');
+     
 
-//partie pour le delete
 
-Route::get ('/admin_index/admincont/delete/{id}', [
-    'as' => 'DeleteControllerDeleteConteneur_path',
-    'uses' => 'App\Http\Controllers\ConteneurDeleteController@deleteConteneur',
+
+        Route::get ('/gestion_index/rapport/{id}', [
+            'as' => 'rapport_path',
+            'uses' => 'App\Http\Controllers\FrontController@gestionRapport',
+            ]);
+
+       
+
+        
+                
+            
+        Route::get ('/admin_index/admincont', [
+            'as' => 'admincont_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminCont',
+            ]);
+            
+
+        Route::get ('/admin_index/adminpc/delete/{id}', [
+            'as' => 'DeletePointDeCollecte_path',
+            'uses' => 'App\Http\Controllers\BackController@DeletePointDeCollecte',
+            ]);
+            
+        Route::get ('/admin_index/admincont/delete/{id}', [
+            'as' => 'DeleteConteneur_path',
+            'uses' => 'App\Http\Controllers\BackController@deleteConteneur',
+            ]);
+
+        Route::get ('/admin_index/adminpc', [
+            'as' => 'adminpc_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminPc',
+            ]);
+                
+                
+        Route::get ('/admin_index/admincont/edit', [
+            'as' => 'admincont-edit_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminContEdit',
+            ]);   
+
+
+        Route::post('/admin_index/admincont/edit', [
+            
+            'as' => 'BackControllerSaveCont_path',
+            'uses' => 'App\Http\Controllers\BackController@save_cont',
+            
+        ]);
+
+        Route::get ('/admin_index/adminpc/edit', [
+            'as' => 'adminpc-edit_path',
+            'uses' => 'App\Http\Controllers\FrontController@adminPcEdit',
+            ]);
+
+
+        Route::post('/admin_index/adminpc/edit', [
+            'as' => 'BackControllerSavePc_path',
+            'uses' => 'App\Http\Controllers\BackController@save_pc',
+        ]);
+
+
+
+});
+
+
+Route::get ('/gestion_index/leve/{id}', [
+    'as' => 'leve_path',
+    'uses' => 'App\Http\Controllers\FrontController@leves',
     ]);
 
-Route::get ('/admin_index/admincont/index', [
-    'as' => 'DeleteControllerIndex_path',
-    'uses' => 'App\Http\Controllers\ConteneurDeleteController@index',
-    ]);
-
-Route::post('/admin_index/admincont/edit', [
-    'as' => 'BackControllerSaveCont_path',
-    'uses' => 'App\Http\Controllers\BackController@save_cont',
-]);
-
-Route::post('/admin_index/adminpc/edit', [
-    'as' => 'BackControllerSavePc_path',
-    'uses' => 'App\Http\Controllers\BackController@save_pc',
-]);

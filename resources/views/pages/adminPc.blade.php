@@ -1,45 +1,64 @@
-<h1>Admin pc</h1>
-<link rel="stylesheet" href="<?php echo asset('css/web.css')?>" type="text/css"> 
-
-<a href="{{ route('accueil_path') }}"><button type="button"> page accueil</button></a></br>
-<a href="{{ route('adminpc_path') }}"><button type="button"> page admin pc</button></a></br>
-<a href="{{ route('adminpc-edit_path') }}"><button type="button"> admin pc edit</button></a></br>
-<a href="{{ route('adminpc-liste_path') }}"><button type="button"> admin pc liste</button></a></br>
-<a href="{{ route('admincont_path') }}"><button type="button">  admin cont</button></a></br>
-<a href="{{ route('admincont-edit_path') }}"><button type="button"> admin cont edit</button></a></br>
-<a href="{{ route('admincont-liste_path') }}"><button type="button"> admin cont liste</button></a></br>
-<a href="{{ route('gestion-liste_path') }}"><button type="button"> gestion liste</button></a></br>
-<a href="{{ route('rapport_path') }}"><button type="button"> page rapport</button></a></br>
-<a href="{{ route('rapport-edit_path') }}"><button type="button"> page rapport edit</button></a></br>
+@extends ('layouts.default')
+@section('content')
 
 
 
-
-<table>
+<table class="table">
 <thead>
     <tr>
-        <th colspan="8">Point de collecte 1</th>
+        <th colspan="9">Points de collectes</th>
     </tr>
     <tr>
-        <th>nom_point_collecte</th>
-        <th>adresse</th>
+        <th>Nom</th>
+        <th>Adresse</th>
         <th>ville</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th>Code postal</th>
+        <th>Informations</th>
+        <th>Rapport</th>
+        <th>Supprimer</th>
+        
     </tr>
 </thead>
+
 <tbody>
 @foreach ($point_de_collectes as $pdc)
+
     <tr>
-    <td>{!! $pdc->nom_point_collecte !!}</td>
+        <td>{!! $pdc->nom_point_collecte !!}</td>
         <td>{!! $pdc->adresse !!}</td>
         <td>{!! $pdc->ville !!}</td>
         <td>{!! $pdc->latitude !!}</td>
         <td>{!! $pdc->longitude !!}</td>
         <td>{!! $pdc->code_postal !!}</td>
-    </tr>
+
+        <td><a  href="{!! route('ContByPDC_path', 
+            ['id' =>  $pdc->id ]) !!}" role="button"> 
+                Lien</a></td>
+
+         
+               
+        <td><a  href="{!! route('rapport_path', 
+            ['id' =>  $pdc->id ]) !!}" role="button"> 
+                Rapport</a></td>  
+
+        <td><a  href="{!! route('DeletePointDeCollecte_path', 
+            ['id' => $pdc->id]) !!}" role="button"> 
+                Supprimer</a>
+        </td> 
+
+       
+        </tr>
+   
     @endforeach
 
     </tbody>
 </table> 
+
+<a  class="btn btn-info" href="{{ route('adminpc-edit_path') }}" role="button"> 
+                Ajouter</a>
+</body>
+</html>
+@stop
+

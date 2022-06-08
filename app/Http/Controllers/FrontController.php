@@ -6,6 +6,9 @@ use App\Leve;
 use App\ConteneurTri;
 use App\PointDeCollecte;
 use App\HistoriqueConteneurTri;
+use App\ConteneurTriPointDeCollecte;
+use Dompdf\Dompdf;
+
 
 use Illuminate\Http\Request;
 use \Illuminate\Http\Response;
@@ -16,9 +19,61 @@ class FrontController extends Controller
 {
     /*Accueil*/
     public function accueil(){ 
-        $leves = Leve::all()->last();
-        return view('pages/accueil')->with('leves', $leves);
+        $pdc = PointDeCollecte::all();
+       
+        
+        $pdcMap = array();
+
+
+
+       
+        
+        // construit le tableau des marqueurs de balises (pour la carte)
+        foreach ($pdc as $rcont) {
+            foreach($rcont->conteneurtris as $rconn) {
+                
+            // crée le lien vers la fiche balise
+            $lien = "<a href=\"" . route('ContByPDC_path', ['id' => $rcont->id]) . "\"> </a>";
+            
+              
+
+           
+            // récupère le relevé le plus récent
+            $releveCont = $rconn;
+            
+            if ($releveCont){
+                // crée le HTML d'info sur la balise
+                $data = $releveCont["nom_conteneur"];
+               
+                $infosCont = "<p> Nom : " . $data . "</p>";
+                
+                $data = $rconn->HistoriqueConteneurTris()->get();
+                
+
+                $infosCont .= "<p> Remplissage : " . $data[0]->remplissage . "</p>";
+
+                $data = $rconn->HistoriqueConteneurTris()->get();
+                
+                $infosCont .= "<p> Batterie : " . $data[0]->batterie . "</p>";
+
+                $infosCont .= "<p> Point de collecte :" .$rcont->nom_point_collecte. "</p>";
+                
+            }
+            // construit le descripteur de marqueur de balise (c'est une chaîne de caractère)
+            $infosMarker = $lien . $infosCont;
+          
+            // ajoute le marqueur au tableau, avec sa géolocalisation
+            $pdcMap[$infosMarker] = array('lat' => $rconn->latitude, 'lon' => $rconn->longitude);
+                       
+           
+                 
+        }
+        }
+        return view('pages/accueil', compact(['pdc','pdcMap']));
     }
+
+
+
 
     
 
@@ -29,49 +84,78 @@ class FrontController extends Controller
     
 
     public function admincont(){ 
+        $items = PointDeCollecte::pluck('nom_point_collecte', 'id');
+    
+
         $conteneurs = ConteneurTri::all(); 
-      // $conteneurs = ConteneurTri::with('HistoriqueConteneurTri')->get();
-       //echo $conteneurs; 
-       $lien = PointDeCollecte::all();
-        $point_de_collectes = PointDeCollecte::all();
-        //return view('pages/adminCont')->with('conteneurs', $conteneurs);
-        return view('pages/adminCont', compact(['conteneurs', 'point_de_collectes','lien']));
-;      
+
+        
+        
+        return view('pages/adminCont', compact(['conteneurs', 'items']));
     }
 
     public function adminContEdit(){
         return view('pages/adminContEdit');
     }
 
-    public function adminContListe(){
-        return view('pages/adminContListe');
+    public function adminContListe($id){
+       
+         $contByPdc = PointDeCollecte::find($id)->ConteneurTris()->get();
+         $pdcUnique = PointDeCollecte::where('id', $id)->take(1)->get();
+         $conts = PointDeCollecte::find($id)->getConteneurTrisByPointCollecte($id);
+         $associate = PointDeCollecte::find($id)->LinkContToPdc($id);
+         $mail = PointDeCollecte::find($id)->checkStatus($id);
+         
+
+        return view('pages/adminContListe', compact(['contByPdc', 'pdcUnique']));
     }
 
+  
 
     public function adminpc(){ 
-        $point_de_collectes = PointDeCollecte::all();
-        return view('pages/adminPc')->with('point_de_collectes', $point_de_collectes);
+        $pdc = PointDeCollecte::all();
+        return view('pages/adminPc')->with('point_de_collectes',$pdc);
     }
 
     public function adminPcEdit(){
-        $conteneurs = ConteneurTri::all();
-        return view('pages/adminPcEdit')->with('conteneurs', $conteneurs);
+        
+        return view('pages/adminPcEdit');
     }
 
     public function adminPcListe(){
-        return view('pages/adminPcListe');
+        $pdc = PointDeCollecte::all();
+        return view('pages/adminPcListe')->with('point_de_collectes',$pdc);
     }
 
-    /*Partie gestion*/
-    public function gestionListe(){
-        return view('pages/gestionListe');
+
+    public function gestionRapport($id){
+        $leves = PointDeCollecte::find($id)->Leves()->get();
+        //dd($leves); 
+        
+        $dompdf = new Dompdf();
+        $dompdf->loadHtml(view('pages/gestionRapport', compact (['leves'])));
+        
+        // (Optional) Setup the paper size and orientation
+        $dompdf->setPaper('A4', 'landscape');
+        
+        // Render the HTML as PDF
+        $dompdf->render();
+        
+        // Output the generated PDF to Browser
+        $dompdf->stream('demo.pdf');
+ 
+        return view('pages/gestionRapport', compact (['leves']));
     }
 
-    public function gestionRapport(){
-        return view('pages/gestionRapport');
+
+    public function leves($id)
+    {
+        $saveLast = ConteneurTri::find($id)->saveLastLevee($id);
+        return redirect ('/accueil');
     }
 
-    public function gestionRapportEdit(){
-        return view('pages/gestionRapportEdit');
-    }
+
+
+  
+
 }
