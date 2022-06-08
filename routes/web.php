@@ -16,11 +16,12 @@ use Illuminate\Support\Facades\Route;
 
 use Dompdf\Dompdf;
 
-Route::get('/', function () {
-    return view('pages/accueil');
+Route::get('/',  [
+    'uses' => 'App\Http\Controllers\FrontController@accueil',
 
     
-});
+    
+]);
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
