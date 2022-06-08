@@ -142,7 +142,7 @@ class PointDeCollecte extends Model
                 ];
 
                 
-                \Mail::to('vocsplay@gmail.com')->send(new \App\Mail\MyTestMail($details));
+                //\Mail::to('vocsplay@gmail.com')->send(new \App\Mail\MyTestMail($details));
             }
             
     }
